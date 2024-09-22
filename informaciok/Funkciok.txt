@@ -1,0 +1,25 @@
+Admin:
+     - Admin, Oktató, Tanuló kezelése 
+     - Osztály, tantárgy, tantárgy követelmény, terem, preferált idő, órarend kezelése
+     - Órarend generálása 
+ 
+Oktató:
+     - Érdemjegy, hiányzás, késés, beírás kezelése 
+
+Tanuló:
+     - Érdemjegy, hiányzás, késés, beírás megjelenítése
+     - Átlagok megjelenítése 
+     - Órarend megjelenítése
+      
+Közös:
+ - Archiválás:
+     - Visszanézhetőek a korábbi tanévben szerzett jegyek, órarendek, fórumok stb.
+     - Az adatbázis ezt támogatja
+ - Profil:
+     - Információk az adott személyről
+ - Fórum:
+     - A fórumon belül létrehozhatóak olyan részek amikhez csak az oktató tud írni (mint a coospace esetében)
+     - Egy közös színtér és osztályokon belül tárgyanként külön-külön színterek  
+ - Chat:
+     - 2 vagy több személy is kommunikálhat egymással
+ 
