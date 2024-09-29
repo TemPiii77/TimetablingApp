@@ -19,6 +19,7 @@ public class AdminController {
     private SubjectService subjectService;
     private ClassService classService;
     private SubjectRequirementService subjectRequirementService;
+    private PreferredTimeService preferredTimeService;
 
 
     @Autowired
@@ -41,7 +42,10 @@ public class AdminController {
         this.subjectRequirementService = subjectRequirementService;
     }
 
-
+    @Autowired
+    public void setPreferredTimeService(PreferredTimeService preferredTimeService) {
+        this.preferredTimeService = preferredTimeService;
+    }
 
     @GetMapping("/classroom")
     public List<ClassroomDto> getClassrooms() {
@@ -148,6 +152,36 @@ public class AdminController {
     public void deleteSubjectRequirement(@PathVariable Integer id) {
         subjectRequirementService.deleteSubjectRequirement(id);
     }
+
+
+
+
+    @GetMapping("/preferredTime")
+    public List<PreferredTimeDto> getPreferredTimes() {
+        return preferredTimeService.getPreferredTimes();
+    }
+
+    @GetMapping("/preferredTime/{id}")
+    public PreferredTimeDto getPreferredTime(@PathVariable Integer id) {
+        return preferredTimeService.getPreferredTime(id);
+    }
+
+    @PostMapping("/preferredTime")
+    public void savePreferredTime(@RequestBody PreferredTimeDto preferredTimeDto) {
+        preferredTimeService.savePreferredTime(preferredTimeDto);
+    }
+
+    @PutMapping("/preferredTime")
+    public void updatePreferredTime(@RequestBody PreferredTimeDto preferredTimeDto) {
+        preferredTimeService.updatePreferredTime(preferredTimeDto);
+    }
+
+    @DeleteMapping("/preferredTime/{id}")
+    public void deletePreferredTime(@PathVariable Integer id) {
+        preferredTimeService.deletePreferredTime(id);
+    }
+
+
 
 
 
