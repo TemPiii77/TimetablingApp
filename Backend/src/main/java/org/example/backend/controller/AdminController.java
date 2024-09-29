@@ -1,5 +1,6 @@
 package org.example.backend.controller;
 
+import org.example.backend.domain.SubjectSubjectRequirementId;
 import org.example.backend.domain.User;
 import org.example.backend.dto.*;
 import org.example.backend.repository.UserChatRepository;
@@ -20,6 +21,7 @@ public class AdminController {
     private ClassService classService;
     private SubjectRequirementService subjectRequirementService;
     private PreferredTimeService preferredTimeService;
+    private SubjectSubjectRequirementService subjectSubjectRequirementService;
 
 
     @Autowired
@@ -46,6 +48,17 @@ public class AdminController {
     public void setPreferredTimeService(PreferredTimeService preferredTimeService) {
         this.preferredTimeService = preferredTimeService;
     }
+
+    @Autowired
+    public void setSubjectSubjectRequirementService(SubjectSubjectRequirementService subjectSubjectRequirementService) {
+        this.subjectSubjectRequirementService = subjectSubjectRequirementService;
+    }
+
+
+
+
+
+
 
     @GetMapping("/classroom")
     public List<ClassroomDto> getClassrooms() {
@@ -185,4 +198,28 @@ public class AdminController {
 
 
 
+    @GetMapping("/subjectSubjectRequirement")
+    public List<SubjectSubjectRequirementDto> getSubjectSubjectRequirements() {
+        return subjectSubjectRequirementService.getSubjectSubjectRequirements();
+    }
+
+    @GetMapping("/subjectSubjectRequirement/{subjectId}_{subjectRequirementId}")
+    public SubjectSubjectRequirementDto getSubjectSubjectRequirement(@PathVariable Integer subjectId, @PathVariable Integer subjectRequirementId) {
+        return subjectSubjectRequirementService.getSubjectSubjectRequirement(subjectId, subjectRequirementId);
+    }
+
+    @PostMapping("/subjectSubjectRequirement")
+    public void saveSubjectSubjectRequirement(@RequestBody SubjectSubjectRequirementIdDto subjectSubjectRequirementIdDto) {
+        subjectSubjectRequirementService.saveSubjectSubjectRequirement(subjectSubjectRequirementIdDto);
+    }
+
+    @PutMapping("/subjectSubjectRequirement")
+    public void updateSubjectSubjectRequirement(@RequestBody SubjectSubjectRequirementIdDto subjectSubjectRequirementIdDto) {
+        subjectSubjectRequirementService.updateSubjectSubjectRequirement(subjectSubjectRequirementIdDto);
+    }
+
+    @DeleteMapping("/subjectSubjectRequirement/{subjectId}_{subjectRequirementId}")
+    public void deleteSubjectSubjectRequirement(@PathVariable Integer subjectId, @PathVariable Integer subjectRequirementId) {
+        subjectSubjectRequirementService.deleteSubjectSubjectRequirement(subjectId, subjectRequirementId);
+    }
 }

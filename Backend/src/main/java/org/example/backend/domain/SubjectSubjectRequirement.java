@@ -29,4 +29,19 @@ public class SubjectSubjectRequirement {
     @JoinColumn(name = "subject_requirement_id", nullable = false)
     private SubjectRequirement subjectRequirement;
 
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+        this.subject.setId(subject.getId());
+        this.subject.setName(subject.getName());
+    }
+
+    public void setSubjectRequirement(SubjectRequirement subjectRequirement) {
+        this.subjectRequirement = subjectRequirement;
+        this.subjectRequirement.setId(subjectRequirement.getId());
+        this.subjectRequirement.setField(subjectRequirement.getField());
+        this.subjectRequirement.setGrade(subjectRequirement.getGrade());
+        this.subjectRequirement.setPeriod(subjectRequirement.getPeriod());
+        this.subjectRequirement.setAdvanced(subjectRequirement.getAdvanced());
+    }
+
 }
