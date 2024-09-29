@@ -24,4 +24,10 @@ public class Teacher {
     @Column(name = "job_title", nullable = false, length = 20)
     private String jobTitle;
 
+    public Teacher() {
+    }
+
+    public Teacher(String id) {
+        this.id = id;
+    }
 }

@@ -1,5 +1,6 @@
 package org.example.backend.controller;
 
+import org.apache.tomcat.util.json.JSONParser;
 import org.example.backend.domain.SubjectSubjectRequirementId;
 import org.example.backend.domain.User;
 import org.example.backend.dto.*;
@@ -11,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
 
+    private UserService userService;
     private ClassroomService classroomService;
     private SubjectService subjectService;
     private ClassService classService;
@@ -23,6 +26,10 @@ public class AdminController {
     private PreferredTimeService preferredTimeService;
     private SubjectSubjectRequirementService subjectSubjectRequirementService;
 
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     public void setClassroomService(ClassroomService classroomService) {
@@ -54,10 +61,31 @@ public class AdminController {
         this.subjectSubjectRequirementService = subjectSubjectRequirementService;
     }
 
+    @GetMapping("/user")
+    public List<UserDto> getUsers() {
+        return userService.getUsers();
+    }
 
+    @GetMapping("/user/{id}")
+    public UserDto getUser(@PathVariable String id) {
+        return userService.getUser(id);
+    }
 
+    @PostMapping("/register")
+    public void saveUser(@RequestBody UserDto userDto, @RequestParam("name") String roleBasedInformation) {
 
+        userService.saveUser(userDto, roleBasedInformation);
+    }
 
+    @PutMapping("/user")
+    public void updateUser(@RequestBody UserDto userDto, @RequestParam("name") String roleBasedInformation) {
+        userService.updateUser(userDto, roleBasedInformation);
+    }
+
+    @DeleteMapping("/user/{id}")
+    public void deleteUser(@PathVariable String id) {
+        userService.deleteUser(id);
+    }
 
 
     @GetMapping("/classroom")
@@ -222,4 +250,6 @@ public class AdminController {
     public void deleteSubjectSubjectRequirement(@PathVariable Integer subjectId, @PathVariable Integer subjectRequirementId) {
         subjectSubjectRequirementService.deleteSubjectSubjectRequirement(subjectId, subjectRequirementId);
     }
+
+
 }

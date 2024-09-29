@@ -21,4 +21,10 @@ public class Student {
     @JoinColumn(name = "id", nullable = false)
     private User user;
 
+    public Student() {
+    }
+
+    public Student(String id) {
+        this.id = id;
+    }
 }

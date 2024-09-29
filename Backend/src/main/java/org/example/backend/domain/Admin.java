@@ -21,4 +21,10 @@ public class Admin {
     @JoinColumn(name = "id", nullable = false)
     private User user;
 
+    public Admin() {
+    }
+
+    public Admin(String id) {
+        this.id = id;
+    }
 }
