@@ -1,15 +1,13 @@
 package org.example.backend.controller;
 
 import org.example.backend.domain.User;
+import org.example.backend.dto.ClassDto;
 import org.example.backend.dto.ClassroomDto;
 import org.example.backend.dto.SubjectDto;
 import org.example.backend.dto.UserDto;
 import org.example.backend.repository.UserChatRepository;
 import org.example.backend.repository.UserRepository;
-import org.example.backend.service.ClassroomService;
-import org.example.backend.service.SubjectService;
-import org.example.backend.service.TeacherSubjectService;
-import org.example.backend.service.UserService;
+import org.example.backend.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +20,7 @@ public class AdminController {
 
     private ClassroomService classroomService;
     private SubjectService subjectService;
+    private ClassService classService;
 
 
     @Autowired
@@ -33,6 +32,12 @@ public class AdminController {
     public void setSubjectService(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
+
+    @Autowired
+    public void setClassService(ClassService classService) {
+        this.classService = classService;
+    }
+
 
 
 
@@ -88,6 +93,33 @@ public class AdminController {
     @DeleteMapping("/subject/{id}")
     public void deleteSubject(@PathVariable Integer id) {
         subjectService.deleteSubject(id);
+    }
+
+
+
+    @GetMapping("/class")
+    public List<ClassDto> getClasses() {
+        return classService.getClasses();
+    }
+
+    @GetMapping("/class/{id}")
+    public ClassDto getClass(@PathVariable Integer id) {
+        return classService.getClass(id);
+    }
+
+    @PostMapping("/class")
+    public void saveClass(@RequestBody ClassDto classDto) {
+        classService.saveClass(classDto);
+    }
+
+    @PutMapping("/class")
+    public void updateClass(@RequestBody ClassDto classDto) {
+        classService.updateClass(classDto);
+    }
+
+    @DeleteMapping("/class/{id}")
+    public void deleteClass(@PathVariable Integer id) {
+        classService.deleteClass(id);
     }
 
 
