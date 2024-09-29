@@ -1,10 +1,7 @@
 package org.example.backend.controller;
 
 import org.example.backend.domain.User;
-import org.example.backend.dto.ClassDto;
-import org.example.backend.dto.ClassroomDto;
-import org.example.backend.dto.SubjectDto;
-import org.example.backend.dto.UserDto;
+import org.example.backend.dto.*;
 import org.example.backend.repository.UserChatRepository;
 import org.example.backend.repository.UserRepository;
 import org.example.backend.service.*;
@@ -21,6 +18,7 @@ public class AdminController {
     private ClassroomService classroomService;
     private SubjectService subjectService;
     private ClassService classService;
+    private SubjectRequirementService subjectRequirementService;
 
 
     @Autowired
@@ -38,7 +36,10 @@ public class AdminController {
         this.classService = classService;
     }
 
-
+    @Autowired
+    public void setSubjectRequirementService(SubjectRequirementService subjectRequirementService) {
+        this.subjectRequirementService = subjectRequirementService;
+    }
 
 
 
@@ -120,6 +121,32 @@ public class AdminController {
     @DeleteMapping("/class/{id}")
     public void deleteClass(@PathVariable Integer id) {
         classService.deleteClass(id);
+    }
+
+
+    @GetMapping("/subjectRequirement")
+    public List<SubjectRequirementDto> getSubjectRequirements() {
+        return subjectRequirementService.getSubjectRequirements();
+    }
+
+    @GetMapping("/subjectRequirement/{id}")
+    public SubjectRequirementDto getSubjectRequirement(@PathVariable Integer id) {
+        return subjectRequirementService.getSubjectRequirement(id);
+    }
+
+    @PostMapping("/subjectRequirement")
+    public void saveSubjectRequirement(@RequestBody SubjectRequirementDto subjectRequirementDto) {
+        subjectRequirementService.saveSubjectRequirement(subjectRequirementDto);
+    }
+
+    @PutMapping("/subjectRequirement")
+    public void updateSubjectRequirement(@RequestBody SubjectRequirementDto subjectRequirementDto) {
+        subjectRequirementService.updateSubjectRequirement(subjectRequirementDto);
+    }
+
+    @DeleteMapping("/subjectRequirement/{id}")
+    public void deleteSubjectRequirement(@PathVariable Integer id) {
+        subjectRequirementService.deleteSubjectRequirement(id);
     }
 
 
