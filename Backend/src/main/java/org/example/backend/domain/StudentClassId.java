@@ -22,6 +22,14 @@ public class StudentClassId implements Serializable {
     @Column(name = "class_id", nullable = false)
     private Integer classId;
 
+    public StudentClassId() {
+    }
+
+    public StudentClassId(String studentId, Integer classId) {
+        this.studentId = studentId;
+        this.classId = classId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

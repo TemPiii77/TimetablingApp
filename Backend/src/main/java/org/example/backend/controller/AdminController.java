@@ -25,6 +25,9 @@ public class AdminController {
     private SubjectRequirementService subjectRequirementService;
     private PreferredTimeService preferredTimeService;
     private SubjectSubjectRequirementService subjectSubjectRequirementService;
+    private ChatService chatService;
+    private StudentClassService studentClassService;
+
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -60,6 +63,26 @@ public class AdminController {
     public void setSubjectSubjectRequirementService(SubjectSubjectRequirementService subjectSubjectRequirementService) {
         this.subjectSubjectRequirementService = subjectSubjectRequirementService;
     }
+
+    @Autowired
+    public void setChatService(ChatService chatService) {
+        this.chatService = chatService;
+    }
+
+    @Autowired
+    public void setStudentClassService(StudentClassService studentClassService) {
+        this.studentClassService = studentClassService;
+    }
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/user")
     public List<UserDto> getUsers() {
@@ -225,6 +248,43 @@ public class AdminController {
 
 
 
+    @GetMapping("/chat")
+    public List<ChatDto> getChats() {
+        return chatService.getChats();
+    }
+
+    @GetMapping("/chat/{id}")
+    public ChatDto getChat(@PathVariable Integer id) {
+        return chatService.getChat(id);
+    }
+
+    @PostMapping("/chat")
+    public void saveChat(@RequestBody ChatDto chatDto) {
+        chatService.saveChat(chatDto);
+    }
+
+    @PutMapping("/chat")
+    public void updateChat(@RequestBody ChatDto chatDto) {
+        chatService.updateChat(chatDto);
+    }
+
+    @DeleteMapping("/chat/{id}")
+    public void deleteChat(@PathVariable Integer id) {
+        chatService.deleteChat(id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/subjectSubjectRequirement")
     public List<SubjectSubjectRequirementDto> getSubjectSubjectRequirements() {
@@ -250,6 +310,45 @@ public class AdminController {
     public void deleteSubjectSubjectRequirement(@PathVariable Integer subjectId, @PathVariable Integer subjectRequirementId) {
         subjectSubjectRequirementService.deleteSubjectSubjectRequirement(subjectId, subjectRequirementId);
     }
+
+
+
+    @GetMapping("/studentClass")
+    public List<StudentClassDto> getStudentClasses() {
+        return studentClassService.getStudentClasses();
+    }
+
+    @GetMapping("/studentClass/{studentId}_{classId}")
+    public StudentClassDto getStudentClass(@PathVariable String studentId, @PathVariable Integer classId) {
+        return studentClassService.getStudentClass(studentId, classId);
+    }
+
+    @PostMapping("/studentClass")
+    public void saveStudentClass(@RequestBody StudentClassIdDto studentClassIdDto) {
+        studentClassService.saveStudentClass(studentClassIdDto);
+    }
+
+    @PutMapping("/studentClass")
+    public void updateStudentClass(@RequestBody StudentClassIdDto studentClassIdDto) {
+        studentClassService.updateStudentClass(studentClassIdDto);
+    }
+
+    @DeleteMapping("/studentClass/{studentId}_{classId}")
+    public void deleteStudentClass(@PathVariable String studentId, @PathVariable Integer classId) {
+        studentClassService.deleteStudentClass(studentId, classId);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

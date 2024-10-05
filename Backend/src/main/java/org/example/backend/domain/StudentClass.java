@@ -28,4 +28,18 @@ public class StudentClass {
     @JoinColumn(name = "class_id", nullable = false)
     private Class classField;
 
+    public void setStudent(Student student) {
+        this.student = student;
+        this.student.setId(student.getId());
+    }
+
+    public void setClass(Class classField) {
+        this.classField = classField;
+        this.classField.setId(classField.getId());
+        this.classField.setYear(classField.getYear());
+        this.classField.setGrade(classField.getGrade());
+        this.classField.setGroup(classField.getGroup());
+        this.classField.setField(classField.getField());
+    }
+
 }
