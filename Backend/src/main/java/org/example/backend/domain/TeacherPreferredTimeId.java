@@ -22,6 +22,14 @@ public class TeacherPreferredTimeId implements Serializable {
     @Column(name = "preferred_time_id", nullable = false)
     private Integer preferredTimeId;
 
+    public TeacherPreferredTimeId() {
+    }
+
+    public TeacherPreferredTimeId(String teacherId, Integer preferredTimeId) {
+        this.teacherId = teacherId;
+        this.preferredTimeId = preferredTimeId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

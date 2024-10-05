@@ -30,6 +30,7 @@ public class AdminController {
     private StudentClassService studentClassService;
     private TeacherSubjectService teacherSubjectService;
     private ClassSubjectService classSubjectService;
+    private TeacherPreferredTimeService teacherPreferredTimeService;
 
 
     @Autowired
@@ -87,7 +88,10 @@ public class AdminController {
         this.classSubjectService = classSubjectService;
     }
 
-
+    @Autowired
+    public void setTeacherPreferredTimeService(TeacherPreferredTimeService teacherPreferredTimeService) {
+        this.teacherPreferredTimeService = teacherPreferredTimeService;
+    }
 
 
 
@@ -374,8 +378,6 @@ public class AdminController {
     }
 
 
-
-
     @GetMapping("/classSubject")
     public List<ClassSubjectDto> getClassSubjects() {
         return classSubjectService.getClassSubjects();
@@ -403,12 +405,30 @@ public class AdminController {
 
 
 
+    @GetMapping("/teacherPreferredTime")
+    public List<TeacherPreferredTimeDto> getTeacherPreferredTimes() {
+        return teacherPreferredTimeService.getTeacherPreferredTimes();
+    }
 
+    @GetMapping("/teacherPreferredTime/{teacherId}_{preferredTimeId}")
+    public TeacherPreferredTimeDto getTeacherPreferredTime(@PathVariable String teacherId, @PathVariable Integer preferredTimeId) {
+        return teacherPreferredTimeService.getTeacherPreferredTime(teacherId, preferredTimeId);
+    }
 
+    @PostMapping("/teacherPreferredTime")
+    public void saveTeacherPreferredTime(@RequestBody TeacherPreferredTimeIdDto teacherPreferredTimeIdDto) {
+        teacherPreferredTimeService.saveTeacherPreferredTime(teacherPreferredTimeIdDto);
+    }
 
+    @PutMapping("/teacherPreferredTime")
+    public void updateTeacherPreferredTime(@RequestBody TeacherPreferredTimeIdDto teacherPreferredTimeIdDto) {
+        teacherPreferredTimeService.updateTeacherPreferredTime(teacherPreferredTimeIdDto);
+    }
 
-
-
+    @DeleteMapping("/teacherPreferredTime/{teacherId}_{preferredTimeId}")
+    public void deleteTeacherPreferredTime(@PathVariable String teacherId, @PathVariable Integer preferredTimeId) {
+        teacherPreferredTimeService.deleteTeacherPreferredTime(teacherId, preferredTimeId);
+    }
 
 
 

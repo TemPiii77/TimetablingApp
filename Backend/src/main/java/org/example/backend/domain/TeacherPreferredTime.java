@@ -28,4 +28,17 @@ public class TeacherPreferredTime {
     @JoinColumn(name = "preferred_time_id", nullable = false)
     private PreferredTime preferredTime;
 
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+        this.teacher.setId(teacher.getId());
+        this.teacher.setJobTitle(teacher.getJobTitle());
+    }
+
+    public void setPreferredTime(PreferredTime preferredTime) {
+        this.preferredTime = preferredTime;
+        this.preferredTime.setId(preferredTime.getId());
+        this.preferredTime.setDay(preferredTime.getDay());
+        this.preferredTime.setHour(preferredTime.getHour());
+    }
+
 }
