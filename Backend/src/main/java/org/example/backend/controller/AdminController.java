@@ -29,6 +29,7 @@ public class AdminController {
     private ChatService chatService;
     private StudentClassService studentClassService;
     private TeacherSubjectService teacherSubjectService;
+    private ClassSubjectService classSubjectService;
 
 
     @Autowired
@@ -81,7 +82,10 @@ public class AdminController {
         this.teacherSubjectService = teacherSubjectService;
     }
 
-
+    @Autowired
+    public void setClassSubjectService(ClassSubjectService classSubjectService) {
+        this.classSubjectService = classSubjectService;
+    }
 
 
 
@@ -372,7 +376,30 @@ public class AdminController {
 
 
 
+    @GetMapping("/classSubject")
+    public List<ClassSubjectDto> getClassSubjects() {
+        return classSubjectService.getClassSubjects();
+    }
 
+    @GetMapping("/classSubject/{classId}_{subjectId}")
+    public ClassSubjectDto getClassSubject(@PathVariable Integer classId, @PathVariable Integer subjectId) {
+        return classSubjectService.getClassSubject(classId, subjectId);
+    }
+
+    @PostMapping("/classSubject")
+    public void saveClassSubject(@RequestBody ClassSubjectIdDto classSubjectIdDto) {
+        classSubjectService.saveClassSubject(classSubjectIdDto);
+    }
+
+    @PutMapping("/classSubject")
+    public void updateClassSubject(@RequestBody ClassSubjectIdDto classSubjectIdDto) {
+        classSubjectService.updateClassSubject(classSubjectIdDto);
+    }
+
+    @DeleteMapping("/classSubject/{classId}_{subjectId}")
+    public void deleteClassSubject(@PathVariable Integer classId, @PathVariable Integer subjectId) {
+        classSubjectService.deleteClassSubject(classId, subjectId);
+    }
 
 
 

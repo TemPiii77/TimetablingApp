@@ -23,6 +23,14 @@ public class ClassSubjectId implements Serializable {
     @Column(name = "subject_id", nullable = false)
     private Integer subjectId;
 
+    public ClassSubjectId() {
+    }
+
+    public ClassSubjectId(Integer classId, Integer subjectId) {
+        this.classId = classId;
+        this.subjectId = subjectId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -29,4 +29,19 @@ public class ClassSubject {
     @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
+    public void setClass(Class classField) {
+        this.classField = classField;
+        this.classField.setId(classField.getId());
+        this.classField.setYear(classField.getYear());
+        this.classField.setGrade(classField.getGrade());
+        this.classField.setGroup(classField.getGroup());
+        this.classField.setField(classField.getField());
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+        this.subject.setId(subject.getId());
+        this.subject.setName(subject.getName());
+    }
+
 }
