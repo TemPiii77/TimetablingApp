@@ -2,6 +2,7 @@ package org.example.backend.controller;
 
 import org.apache.tomcat.util.json.JSONParser;
 import org.example.backend.domain.SubjectSubjectRequirementId;
+import org.example.backend.domain.TeacherSubjectId;
 import org.example.backend.domain.User;
 import org.example.backend.dto.*;
 import org.example.backend.repository.UserChatRepository;
@@ -27,6 +28,7 @@ public class AdminController {
     private SubjectSubjectRequirementService subjectSubjectRequirementService;
     private ChatService chatService;
     private StudentClassService studentClassService;
+    private TeacherSubjectService teacherSubjectService;
 
 
     @Autowired
@@ -74,7 +76,10 @@ public class AdminController {
         this.studentClassService = studentClassService;
     }
 
-
+    @Autowired
+    public void setTeacherSubjectService(TeacherSubjectService teacherSubjectService) {
+        this.teacherSubjectService = teacherSubjectService;
+    }
 
 
 
@@ -337,6 +342,35 @@ public class AdminController {
     public void deleteStudentClass(@PathVariable String studentId, @PathVariable Integer classId) {
         studentClassService.deleteStudentClass(studentId, classId);
     }
+
+
+    @GetMapping("/teacherSubject")
+    public List<TeacherSubjectDto> getTeacherSubjects() {
+        return teacherSubjectService.getTeacherSubjects();
+    }
+
+    @GetMapping("/teacherSubject/{teacherId}_{subjectId}")
+    public TeacherSubjectDto getTeacherSubject(@PathVariable String teacherId, @PathVariable Integer subjectId) {
+        return teacherSubjectService.getTeacherSubject(teacherId, subjectId);
+    }
+
+    @PostMapping("/teacherSubject")
+    public void saveTeacherSubject(@RequestBody TeacherSubjectIdDto teacherSubjectIdDto) {
+        teacherSubjectService.saveTeacherSubject(teacherSubjectIdDto);
+    }
+
+    @PutMapping("/teacherSubject")
+    public void updateTeacherSubject(@RequestBody TeacherSubjectIdDto teacherSubjectIdDto) {
+        teacherSubjectService.updateTeacherSubject(teacherSubjectIdDto);
+    }
+
+    @DeleteMapping("/teacherSubject/{teacherId}_{subjectId}")
+    public void deleteTeacherSubject(@PathVariable String teacherId, @PathVariable Integer subjectId) {
+        teacherSubjectService.deleteTeacherSubject(teacherId, subjectId);
+    }
+
+
+
 
 
 

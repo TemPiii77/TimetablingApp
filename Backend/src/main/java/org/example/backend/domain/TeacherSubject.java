@@ -28,4 +28,15 @@ public class TeacherSubject {
     @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+        this.teacher.setId(teacher.getId());
+        this.teacher.setJobTitle(teacher.getJobTitle());
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+        this.subject.setId(subject.getId());
+        this.subject.setName(subject.getName());
+    }
 }
