@@ -31,6 +31,7 @@ public class AdminController {
     private TeacherSubjectService teacherSubjectService;
     private ClassSubjectService classSubjectService;
     private TeacherPreferredTimeService teacherPreferredTimeService;
+    private TimeslotService timeslotService;
 
 
     @Autowired
@@ -93,7 +94,10 @@ public class AdminController {
         this.teacherPreferredTimeService = teacherPreferredTimeService;
     }
 
-
+    @Autowired
+    public void setTimeslotService(TimeslotService timeslotService) {
+        this.timeslotService = timeslotService;
+    }
 
 
 
@@ -431,5 +435,29 @@ public class AdminController {
     }
 
 
+    @GetMapping("/timeslot")
+    public List<TimeslotDto> getTimeslots() {
+        return timeslotService.getTimeslots();
+    }
+
+    @GetMapping("/timeslot/{id}")
+    public TimeslotDto getTimeslot(@PathVariable Integer id) {
+        return timeslotService.getTimeslot(id);
+    }
+
+    @PostMapping("/timeslot")
+    public void saveTimeslot(@RequestBody TimeslotDto timeslotDto) {
+        timeslotService.saveTimeslot(timeslotDto);
+    }
+
+    @PutMapping("/timeslot")
+    public void updateTimeslot(@RequestBody TimeslotDto timeslotDto) {
+        timeslotService.updateTimeslot(timeslotDto);
+    }
+
+    @DeleteMapping("/timeslot/{id}")
+    public void deleteTimeslot(@PathVariable Integer id) {
+        timeslotService.deleteTimeslot(id);
+    }
 
 }

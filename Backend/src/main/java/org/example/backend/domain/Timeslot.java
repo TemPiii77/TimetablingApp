@@ -50,4 +50,36 @@ public class Timeslot {
     @JoinColumn(name = "classroom_id", nullable = false)
     private Classroom classroom;
 
+    public void setClass(Class classField) {
+        this.classField = classField;
+        this.classField.setId(classField.getId());
+        this.classField.setYear(classField.getYear());
+        this.classField.setGrade(classField.getGrade());
+        this.classField.setGroup(classField.getGroup());
+        this.classField.setField(classField.getField());
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+        this.teacher.setId(teacher.getId());
+        this.teacher.setJobTitle(teacher.getJobTitle());
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+        this.subject.setId(subject.getId());
+        this.subject.setName(subject.getName());
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+        this.classroom.setId(classroom.getId());
+        this.classroom.setName(classroom.getName());
+        this.classroom.setType(classroom.getType());
+        this.classroom.setDoubleSize(classroom.getDoubleSize());
+    }
+
+
+
+
 }
