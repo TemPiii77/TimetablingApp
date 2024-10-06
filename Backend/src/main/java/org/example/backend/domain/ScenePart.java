@@ -24,6 +24,7 @@ public class ScenePart {
     @Column(name = "news", nullable = false)
     private Boolean news = false;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ColumnDefault("nextval('scene_part_scene_id_seq')")

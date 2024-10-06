@@ -26,11 +26,13 @@ public class SceneComment {
     @Column(name = "date_recorded", nullable = false)
     private Instant dateRecorded;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ColumnDefault("nextval('scene_comment_scene_part_id_seq')")

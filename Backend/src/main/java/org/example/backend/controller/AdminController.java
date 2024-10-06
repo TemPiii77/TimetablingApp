@@ -36,6 +36,11 @@ public class AdminController {
     private AbsenceService absenceService;
     private DelayService delayService;
     private ProblemService problemService;
+    private SceneService sceneService;
+    private ScenePartService scenePartService;
+    private SceneCommentService sceneCommentService;
+    private ChatCommentService chatCommentService;
+
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -122,11 +127,25 @@ public class AdminController {
         this.problemService = problemService;
     }
 
+    @Autowired
+    public void setSceneService(SceneService sceneService) {
+        this.sceneService = sceneService;
+    }
 
+    @Autowired
+    public void setScenePartService(ScenePartService scenePartService) {
+        this.scenePartService = scenePartService;
+    }
 
+    @Autowired
+    public void setSceneCommentService(SceneCommentService sceneCommentService) {
+        this.sceneCommentService = sceneCommentService;
+    }
 
-
-
+    @Autowired
+    public void setChatCommentService(ChatCommentService chatCommentService) {
+        this.chatCommentService = chatCommentService;
+    }
 
 
 
@@ -586,14 +605,6 @@ public class AdminController {
         delayService.deleteDelay(id);
     }
 
-
-
-
-
-
-
-
-
     @GetMapping("/problem")
     public List<ProblemDto> getProblems() {
         return problemService.getProblems();
@@ -618,6 +629,137 @@ public class AdminController {
     public void deleteProblem(@PathVariable Integer id) {
         problemService.deleteProblem(id);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @GetMapping("/scene")
+    public List<SceneDto> getScenes() {
+        return sceneService.getScenes();
+    }
+
+    @GetMapping("/scene/{id}")
+    public SceneDto getScene(@PathVariable Integer id) {
+        return sceneService.getScene(id);
+    }
+
+    @PostMapping("/scene")
+    public void saveScene(@RequestBody SceneDto sceneDto) {
+        sceneService.saveScene(sceneDto);
+    }
+
+    @PutMapping("/scene")
+    public void updateScene(@RequestBody SceneDto sceneDto) {
+        sceneService.updateScene(sceneDto);
+    }
+
+    @DeleteMapping("/scene/{id}")
+    public void deleteScene(@PathVariable Integer id) {
+        sceneService.deleteScene(id);
+    }
+
+
+    @GetMapping("/scenePart")
+    public List<ScenePartDto> getSceneParts() {
+        return scenePartService.getSceneParts();
+    }
+
+    @GetMapping("/scenePart/{id}")
+    public ScenePartDto getScenePart(@PathVariable Integer id) {
+        return scenePartService.getScenePart(id);
+    }
+
+    @PostMapping("/scenePart")
+    public void saveScenePart(@RequestBody ScenePartDto scenePartDto) {
+        scenePartService.saveScenePart(scenePartDto);
+    }
+
+    @PutMapping("/scenePart")
+    public void updateScenePart(@RequestBody ScenePartDto scenePartDto) {
+        scenePartService.updateScenePart(scenePartDto);
+    }
+
+    @DeleteMapping("/scenePart/{id}")
+    public void deleteScenePart(@PathVariable Integer id) {
+        scenePartService.deleteScenePart(id);
+    }
+
+
+
+    @GetMapping("/sceneComment")
+    public List<SceneCommentDto> getSceneComments() {
+        return sceneCommentService.getSceneComments();
+    }
+
+    @GetMapping("/sceneComment/{id}")
+    public SceneCommentDto getSceneComment(@PathVariable Integer id) {
+        return sceneCommentService.getSceneComment(id);
+    }
+
+    @PostMapping("/sceneComment")
+    public void saveSceneComment(@RequestBody SceneCommentDto sceneCommentDto) {
+        sceneCommentService.saveSceneComment(sceneCommentDto);
+    }
+
+    @PutMapping("/sceneComment")
+    public void updateSceneComment(@RequestBody SceneCommentDto sceneCommentDto) {
+        sceneCommentService.updateSceneComment(sceneCommentDto);
+    }
+
+    @DeleteMapping("/sceneComment/{id}")
+    public void deleteSceneComment(@PathVariable Integer id) {
+        sceneCommentService.deleteSceneComment(id);
+    }
+
+
+
+
+
+    @GetMapping("/chatComment")
+    public List<ChatCommentDto> getChatComments() {
+        return chatCommentService.getChatComments();
+    }
+
+    @GetMapping("/chatComment/{id}")
+    public ChatCommentDto getChatComment(@PathVariable Integer id) {
+        return chatCommentService.getChatComment(id);
+    }
+
+    @PostMapping("/chatComment")
+    public void saveChatComment(@RequestBody ChatCommentDto chatCommentDto) {
+        chatCommentService.saveChatComment(chatCommentDto);
+    }
+
+    @PutMapping("/chatComment")
+    public void updateChatComment(@RequestBody ChatCommentDto chatCommentDto) {
+        chatCommentService.updateChatComment(chatCommentDto);
+    }
+
+    @DeleteMapping("/chatComment/{id}")
+    public void deleteChatComment(@PathVariable Integer id) {
+        chatCommentService.deleteChatComment(id);
+    }
+
+
+
+
+
+
 
 
 

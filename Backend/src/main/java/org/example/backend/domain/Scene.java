@@ -21,6 +21,7 @@ public class Scene {
     @Column(name = "name", nullable = false, length = 200)
     private String name;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ColumnDefault("nextval('scene_subject_id_seq')")
