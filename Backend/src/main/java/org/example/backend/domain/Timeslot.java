@@ -61,8 +61,9 @@ public class Timeslot {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
-        this.teacher.setId(teacher.getId());
-        this.teacher.setJobTitle(teacher.getJobTitle());
+//        this.teacher.setId(teacher.getId());
+//        this.teacher.setUser(teacher.getUser());
+//        this.teacher.setJobTitle(teacher.getJobTitle());
     }
 
     public void setSubject(Subject subject) {

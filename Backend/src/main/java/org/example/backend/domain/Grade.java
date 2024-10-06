@@ -37,10 +37,16 @@ public class Grade {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ColumnDefault("nextval('grade_timeslot_id_seq')")
     @JoinColumn(name = "timeslot_id", nullable = false)
     private Timeslot timeslot;
 
+    public void setStudent(Student student) {
+        this.student = student;
+        this.student.setId(student.getId());
+        this.student.setUser(student.getUser());
+    }
 }

@@ -32,7 +32,10 @@ public class AdminController {
     private ClassSubjectService classSubjectService;
     private TeacherPreferredTimeService teacherPreferredTimeService;
     private TimeslotService timeslotService;
-
+    private GradeService gradeService;
+    private AbsenceService absenceService;
+    private DelayService delayService;
+    private ProblemService problemService;
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -98,6 +101,41 @@ public class AdminController {
     public void setTimeslotService(TimeslotService timeslotService) {
         this.timeslotService = timeslotService;
     }
+
+    @Autowired
+    public void setGradeService(GradeService gradeService) {
+        this.gradeService = gradeService;
+    }
+
+    @Autowired
+    public void setAbsenceService(AbsenceService absenceService) {
+        this.absenceService = absenceService;
+    }
+
+    @Autowired
+    public void setDelayService(DelayService delayService) {
+        this.delayService = delayService;
+    }
+
+    @Autowired
+    public void setProblemService(ProblemService problemService) {
+        this.problemService = problemService;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -459,5 +497,138 @@ public class AdminController {
     public void deleteTimeslot(@PathVariable Integer id) {
         timeslotService.deleteTimeslot(id);
     }
+
+
+
+
+    @GetMapping("/grade")
+    public List<GradeDto> getGrades() {
+        return gradeService.getGrades();
+    }
+
+    @GetMapping("/grade/{id}")
+    public GradeDto getGrade(@PathVariable Integer id) {
+        return gradeService.getGrade(id);
+    }
+
+    @PostMapping("/grade")
+    public void saveGrade(@RequestBody GradeDto gradeDto) {
+        gradeService.saveGrade(gradeDto);
+    }
+
+    @PutMapping("/grade")
+    public void updateGrade(@RequestBody GradeDto gradeDto) {
+        gradeService.updateGrade(gradeDto);
+    }
+
+    @DeleteMapping("/grade/{id}")
+    public void deleteGrade(@PathVariable Integer id) {
+        gradeService.deleteGrade(id);
+    }
+
+
+
+
+
+
+
+
+    @GetMapping("/absence")
+    public List<AbsenceDto> getAbsences() {
+        return absenceService.getAbsences();
+    }
+
+    @GetMapping("/absence/{id}")
+    public AbsenceDto getAbsence(@PathVariable Integer id) {
+        return absenceService.getAbsence(id);
+    }
+
+    @PostMapping("/absence")
+    public void saveAbsence(@RequestBody AbsenceDto absenceDto) {
+        absenceService.saveAbsence(absenceDto);
+    }
+
+    @PutMapping("/absence")
+    public void updateAbsence(@RequestBody AbsenceDto absenceDto) {
+        absenceService.updateAbsence(absenceDto);
+    }
+
+    @DeleteMapping("/absence/{id}")
+    public void deleteAbsence(@PathVariable Integer id) {
+        absenceService.deleteAbsence(id);
+    }
+
+
+
+
+    @GetMapping("/delay")
+    public List<DelayDto> getDelays() {
+        return delayService.getDelays();
+    }
+
+    @GetMapping("/delay/{id}")
+    public DelayDto getDelay(@PathVariable Integer id) {
+        return delayService.getDelay(id);
+    }
+
+    @PostMapping("/delay")
+    public void saveDelay(@RequestBody DelayDto delayDto) {
+        delayService.saveDelay(delayDto);
+    }
+
+    @PutMapping("/delay")
+    public void updateDelay(@RequestBody DelayDto delayDto) {
+        delayService.updateDelay(delayDto);
+    }
+
+    @DeleteMapping("/delay/{id}")
+    public void deleteDelay(@PathVariable Integer id) {
+        delayService.deleteDelay(id);
+    }
+
+
+
+
+
+
+
+
+
+    @GetMapping("/problem")
+    public List<ProblemDto> getProblems() {
+        return problemService.getProblems();
+    }
+
+    @GetMapping("/problem/{id}")
+    public ProblemDto getProblem(@PathVariable Integer id) {
+        return problemService.getProblem(id);
+    }
+
+    @PostMapping("/problem")
+    public void saveProblem(@RequestBody ProblemDto problemDto) {
+        problemService.saveProblem(problemDto);
+    }
+
+    @PutMapping("/problem")
+    public void updateProblem(@RequestBody ProblemDto problemDto) {
+        problemService.updateProblem(problemDto);
+    }
+
+    @DeleteMapping("/problem/{id}")
+    public void deleteProblem(@PathVariable Integer id) {
+        problemService.deleteProblem(id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
