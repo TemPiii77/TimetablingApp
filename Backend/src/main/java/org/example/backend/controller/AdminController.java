@@ -40,6 +40,9 @@ public class AdminController {
     private ScenePartService scenePartService;
     private SceneCommentService sceneCommentService;
     private ChatCommentService chatCommentService;
+    private TeacherSceneService teacherSceneService;
+    private ClassSceneService classSceneService;
+    private UserChatService userChatService;
 
 
     @Autowired
@@ -147,7 +150,20 @@ public class AdminController {
         this.chatCommentService = chatCommentService;
     }
 
+    @Autowired
+    public void setTeacherSceneService(TeacherSceneService teacherSceneService) {
+        this.teacherSceneService = teacherSceneService;
+    }
 
+    @Autowired
+    public void setClassSceneService(ClassSceneService classSceneService) {
+        this.classSceneService = classSceneService;
+    }
+
+    @Autowired
+    public void setUserChatService(UserChatService userChatService) {
+        this.userChatService = userChatService;
+    }
 
 
 
@@ -517,9 +533,6 @@ public class AdminController {
         timeslotService.deleteTimeslot(id);
     }
 
-
-
-
     @GetMapping("/grade")
     public List<GradeDto> getGrades() {
         return gradeService.getGrades();
@@ -545,13 +558,6 @@ public class AdminController {
         gradeService.deleteGrade(id);
     }
 
-
-
-
-
-
-
-
     @GetMapping("/absence")
     public List<AbsenceDto> getAbsences() {
         return absenceService.getAbsences();
@@ -576,8 +582,6 @@ public class AdminController {
     public void deleteAbsence(@PathVariable Integer id) {
         absenceService.deleteAbsence(id);
     }
-
-
 
 
     @GetMapping("/delay")
@@ -629,24 +633,6 @@ public class AdminController {
     public void deleteProblem(@PathVariable Integer id) {
         problemService.deleteProblem(id);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @GetMapping("/scene")
     public List<SceneDto> getScenes() {
@@ -727,9 +713,6 @@ public class AdminController {
     }
 
 
-
-
-
     @GetMapping("/chatComment")
     public List<ChatCommentDto> getChatComments() {
         return chatCommentService.getChatComments();
@@ -756,14 +739,84 @@ public class AdminController {
     }
 
 
+    @GetMapping("/teacherScene")
+    public List<TeacherSceneDto> getTeacherScenes() {
+        return teacherSceneService.getTeacherScenes();
+    }
+
+    @GetMapping("/teacherScene/{teacherId}_{sceneId}")
+    public TeacherSceneDto getTeacherScene(@PathVariable String teacherId, @PathVariable Integer sceneId) {
+        return teacherSceneService.getTeacherScene(teacherId, sceneId);
+    }
+
+    @PostMapping("/teacherScene")
+    public void saveTeacherScene(@RequestBody TeacherSceneIdDto teacherSceneIdDto) {
+        teacherSceneService.saveTeacherScene(teacherSceneIdDto);
+    }
+
+    @PutMapping("/teacherScene")
+    public void updateTeacherScene(@RequestBody TeacherSceneIdDto teacherSceneIdDto) {
+        teacherSceneService.updateTeacherScene(teacherSceneIdDto);
+    }
+
+    @DeleteMapping("/teacherScene/{teacherId}_{sceneId}")
+    public void deleteTeacherScene(@PathVariable String teacherId, @PathVariable Integer sceneId) {
+        teacherSceneService.deleteTeacherScene(teacherId, sceneId);
+    }
+
+
+    @GetMapping("/classScene")
+    public List<ClassSceneDto> getClassScenes() {
+        return classSceneService.getClassScenes();
+    }
+
+    @GetMapping("/classScene/{classId}_{sceneId}")
+    public ClassSceneDto getClassScene(@PathVariable Integer classId, @PathVariable Integer sceneId) {
+        return classSceneService.getClassScene(classId, sceneId);
+    }
+
+    @PostMapping("/classScene")
+    public void saveClassScene(@RequestBody ClassSceneIdDto classSceneIdDto) {
+        classSceneService.saveClassScene(classSceneIdDto);
+    }
+
+    @PutMapping("/classScene")
+    public void updateClassScene(@RequestBody ClassSceneIdDto classSceneIdDto) {
+        classSceneService.updateClassScene(classSceneIdDto);
+    }
+
+    @DeleteMapping("/classScene/{classId}_{sceneId}")
+    public void deleteClassScene(@PathVariable Integer classId, @PathVariable Integer sceneId) {
+        classSceneService.deleteClassScene(classId, sceneId);
+    }
 
 
 
 
+    @GetMapping("/userChat")
+    public List<UserChatDto> getUserChats() {
+        return userChatService.getUserChats();
+    }
 
+    @GetMapping("/userChat/{userId}_{chatId}")
+    public UserChatDto getUserChat(@PathVariable String userId, @PathVariable Integer chatId) {
+        return userChatService.getUserChat(userId, chatId);
+    }
 
+    @PostMapping("/userChat")
+    public void saveUserChat(@RequestBody UserChatIdDto userChatIdDto) {
+        userChatService.saveUserChat(userChatIdDto);
+    }
 
+    @PutMapping("/userChat")
+    public void updateUserChat(@RequestBody UserChatIdDto userChatIdDto) {
+        userChatService.updateUserChat(userChatIdDto);
+    }
 
+    @DeleteMapping("/userChat/{userId}_{chatId}")
+    public void deleteUserChat(@PathVariable String userId, @PathVariable Integer chatId) {
+        userChatService.deleteUserChat(userId, chatId);
+    }
 
 
 

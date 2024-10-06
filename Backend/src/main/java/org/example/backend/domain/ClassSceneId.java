@@ -23,6 +23,14 @@ public class ClassSceneId implements Serializable {
     @Column(name = "scene_id", nullable = false)
     private Integer sceneId;
 
+    public ClassSceneId() {
+    }
+
+    public ClassSceneId(Integer classId, Integer sceneId) {
+        this.classId = classId;
+        this.sceneId = sceneId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

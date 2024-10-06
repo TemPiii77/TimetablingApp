@@ -22,6 +22,14 @@ public class UserChatId implements Serializable {
     @Column(name = "chat_id", nullable = false)
     private Integer chatId;
 
+    public UserChatId() {
+    }
+
+    public UserChatId(String userId, Integer chatId) {
+        this.userId = userId;
+        this.chatId = chatId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
