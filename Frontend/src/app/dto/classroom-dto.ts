@@ -2,5 +2,5 @@ export interface ClassroomDto {
   id : number
   name : string
   type : string
-  doubleSize : boolean
+  doubleSize : boolean | null | undefined
 }

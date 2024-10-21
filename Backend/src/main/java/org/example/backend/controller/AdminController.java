@@ -10,6 +10,7 @@ import org.example.backend.repository.UserRepository;
 import org.example.backend.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -211,10 +212,18 @@ public class AdminController {
         return classroomService.getClassroom(id);
     }
 
+//    @PostMapping("/classroom")
+//    public void saveClassroom(@RequestBody ClassroomDto classroomDto) {
+//        classroomService.saveClassroom(classroomDto);
+//    }
+
+    @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
     @PostMapping("/classroom")
-    public void saveClassroom(@RequestBody ClassroomDto classroomDto) {
+    public ResponseEntity<Void> saveClassroom(@RequestBody ClassroomDto classroomDto) {
         classroomService.saveClassroom(classroomDto);
+        return ResponseEntity.ok().build();
     }
+
 
     @PutMapping("/classroom")
     public void updateClassroom(@RequestBody ClassroomDto classroomDto) {

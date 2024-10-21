@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+input[type=text], input[type=password], select, option {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 16px;
+}
+
+form {
+  background-color: #fefefe;
+  margin: 3% auto 5% auto;
+  border: 1px solid #888;
+  width: 30%;
+  border-radius: 10px;
+}
+
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+  font-size: 1em;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+  margin: 0 auto;
+}
+
+table tr:nth-child(1) {
+  background-color: #cccccc;
+  color: #333333;
+  font-weight: bold;
+}
+
+table, table td {
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+}
+
+table tr:nth-child(even) {
+  background-color: #f3f3f3;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    display: block;
+    width: 100%;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  table td {
+    display: block;
+    text-align: right;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  table tr:nth-child(1) td::before {
+    display: none;
+  }
+}
+
+
