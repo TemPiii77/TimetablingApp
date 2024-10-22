@@ -59,10 +59,13 @@ export class ClassroomComponent implements OnInit{
     };
 
     if(event.submitter.name == "save") {
+      this.classroomForm.get('id')?.setValue(null);
+      classroom.id = 0;
       this.saveClassroom(classroom);
     }
     else if(event.submitter.name == "update") {
       this.updateClassroom(classroom);
+      this.classroomForm.get('id')?.setValue(null);
     }
   }
 
