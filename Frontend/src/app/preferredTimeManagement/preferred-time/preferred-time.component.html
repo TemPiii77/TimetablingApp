@@ -1,1 +1,40 @@
-<p>preferred-time works!</p>
+<form [formGroup]="preferredTimeForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultPreferredTime?.id" readonly>
+    
+    <label for="day"><b>Nap:</b></label>
+    <select formControlName="day" id="day">
+      @for (day of days; track day) {
+        <option [value]="day">{{day}}</option>
+      }
+    </select>
+
+    <label for="hour"><b>Óra:</b></label>
+    <select formControlName="hour" id="hour">
+      <option *ngFor="let hour of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="hour">{{hour}}</option>
+    </select>
+
+    <button type="submit" name="save" >Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Nap</td>
+    <td>Óra</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (preferredTime of preferredTimes; track preferredTime.id) {
+    <tr>
+      <td>{{preferredTime.id}}</td>
+      <td>{{preferredTime.day}}</td>
+      <td>{{preferredTime.hour}}</td>
+      <td (click)="deletePreferredTime(preferredTime.id)">Törlés</td>
+      <td (click)="updatePreferredTimeForm(preferredTime)">Módosítás</td>
+    </tr>
+  }
+</table>
