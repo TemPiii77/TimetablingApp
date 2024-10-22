@@ -1,1 +1,53 @@
-<p>class works!</p>
+<form [formGroup]="classForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultClass?.id" readonly>
+
+    <label for="year"><b>Év:</b></label>
+    <input type="number" min="2000" max="2099" step="1" value="2024" formControlName="year" id="year">
+
+    <label for="grade"><b>Évfolyam:</b></label>
+    <select formControlName="grade" id="grade">
+      <option *ngFor="let grade of [1,2,3,4,5,6,7,8,9,10,11,12,13,14]" [value]="grade">{{grade}}</option>
+    </select>
+
+    <label for="group"><b>Csoport:</b></label>
+    <select formControlName="group" id="group">
+      <option *ngFor="let group of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']" [value]="group">{{group}}</option>
+    </select>
+
+    <label for="field"><b>Szak:</b></label>
+    <select formControlName="field" id="field">
+      @for (field of fields; track field) {
+        <option [value]="field">{{field}}</option>
+      }
+    </select>
+
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Év</td>
+    <td>Évfolyam</td>
+    <td>Csoport</td>
+    <td>Szak</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (cclass of classes; track cclass.id) {
+    <tr>
+      <td>{{cclass.id}}</td>
+      <td>{{cclass.year}}</td>
+      <td>{{cclass.grade}}</td>
+      <td>{{cclass.group}}</td>
+      <td>{{cclass.field}}</td>
+      <td (click)="deleteClass(cclass.id)">Törlés</td>
+      <td (click)="updateClassForm(cclass)">Módosítás</td>
+    </tr>
+  }
+</table>
