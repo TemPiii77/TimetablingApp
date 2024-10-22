@@ -2,11 +2,11 @@ import { Routes } from '@angular/router';
 import {HomepageComponent} from "./homepage/homepage.component";
 import {LoginComponent} from "./auth/login/login.component";
 import {UserManagementComponent} from "./user/user-management/user-management.component";
-import {SubjectManagementComponent} from "./subject/subject-management/subject-management.component";
-import {ClassManagementComponent} from "./class/class-management/class-management.component";
-import {PreferredTimeManagementComponent} from "./preferredTime/preferred-time-management/preferred-time-management.component";
-import {TimeslotManagementComponent} from "./timeslot/timeslot-management/timeslot-management.component";
-import {ClassroomManagementComponent} from "./classroom/classroom-management/classroom-management.component";
+import {SubjectContainerComponent} from "./subjectManagement/subject-container/subject-container.component";
+import {PreferredTimeContainerComponent} from "./preferredTimeManagement/preferred-time-container/preferred-time-container.component";
+import {TimeslotComponent} from "./timeslotManagement/timeslot/timeslot.component";
+import {ClassContainerComponent} from "./classManagement/class-container/class-container.component";
+import {ClassroomComponent} from "./classroomManagement/classroom/classroom.component";
 
 export const routes: Routes = [
   {
@@ -33,27 +33,27 @@ export const routes: Routes = [
   {
     path: 'subject',
     title: '',
-    component: SubjectManagementComponent,
+    component: SubjectContainerComponent,
   },
   {
     path: 'classroom',
     title: '',
-    component: ClassroomManagementComponent,
+    component: ClassroomComponent,
   },
   {
     path: 'class',
     title: '',
-    component: ClassManagementComponent,
+    component: ClassContainerComponent,
   },
   {
     path: 'preferredTime',
     title: '',
-    component: PreferredTimeManagementComponent,
+    component: PreferredTimeContainerComponent,
   },
   {
     path: 'timeslot',
     title: '',
-    component: TimeslotManagementComponent,
+    component: TimeslotComponent,
   }
 
 

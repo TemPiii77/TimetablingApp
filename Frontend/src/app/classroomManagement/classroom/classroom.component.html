@@ -1,0 +1,43 @@
+<form [formGroup]="classroomForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultClassroom?.id" readonly #idInput>
+
+    <label for="name"><b>Név:</b></label>
+    <input type="text" formControlName="name" placeholder="Adja meg a terem nevét" id="name" required [value]="defaultClassroom?.name">
+
+    <label for="type"><b>Típus:</b></label>
+    <select formControlName="type" id="type">
+      <option value="sima">sima</option>
+      <option value="informatika">informatika</option>
+    </select>
+    <!--    <input type="text" formControlName="type" placeholder="Adja meg a terem típusát" id="type" required [value]="defaultClassroom?.type">-->
+
+    <label for="doubleSize"><b>Dupla terem:</b></label>
+    <input type="checkbox" formControlName="doubleSize" id="doubleSize" [checked]="defaultClassroom?.doubleSize">
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Név</td>
+    <td>Típus</td>
+    <td>Dupla</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (classroom of classrooms; track classroom.id) {
+    <tr>
+      <td>{{classroom.id}}</td>
+      <td>{{classroom.name}}</td>
+      <td>{{classroom.type}}</td>
+      <td>{{classroom.doubleSize ? 'igen' : 'nem'}}</td>
+      <td (click)="deleteClassroom(classroom.id)">Törlés</td>
+      <td (click)="updateClassroomForm(classroom)">Módosítás</td>
+    </tr>
+  }
+</table>
