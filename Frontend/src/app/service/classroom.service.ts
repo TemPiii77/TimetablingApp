@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {ClassroomDto} from "../dto/classroom-dto";
 import {BehaviorSubject, Observable} from "rxjs";
 
@@ -19,7 +19,6 @@ export class ClassroomService {
     });
   }
 
-
   saveClassroom(newClassroom: ClassroomDto): void {
     this.http.post<ClassroomDto>("http://localhost:8080/admin/classroom", newClassroom).subscribe(() => {
       this.listClassrooms();
@@ -35,6 +34,4 @@ export class ClassroomService {
       this.listClassrooms();
     });
   }
-
-
 }
