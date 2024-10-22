@@ -1,1 +1,29 @@
-<p>subject works!</p>
+<form [formGroup]="subjectForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultSubject?.id" readonly #idInput>
+
+    <label for="name"><b>Név:</b></label>
+    <input type="text" formControlName="name" placeholder="Adja meg a tárgy nevét" id="name" required [value]="defaultSubject?.name">
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Név</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (subject of subjects; track subject.id) {
+    <tr>
+      <td>{{subject.id}}</td>
+      <td>{{subject.name}}</td>
+      <td (click)="deleteSubject(subject.id)">Törlés</td>
+      <td (click)="updateSubjectForm(subject)">Módosítás</td>
+    </tr>
+  }
+</table>
