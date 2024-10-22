@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PreferredTimeDto} from "../../dto/preferred-time-dto";
 import {PreferredTimeService} from "../../service/preferred-time.service";
@@ -15,7 +15,7 @@ import {CommonModule} from "@angular/common";
   templateUrl: './preferred-time.component.html',
   styleUrl: './preferred-time.component.css'
 })
-export class PreferredTimeComponent {
+export class PreferredTimeComponent implements OnInit{
 
   preferredTimes: PreferredTimeDto[] = [];
   defaultPreferredTime: PreferredTimeDto | undefined;

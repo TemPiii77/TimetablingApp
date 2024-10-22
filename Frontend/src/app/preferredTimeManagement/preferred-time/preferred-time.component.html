@@ -2,7 +2,7 @@
   <div class="container">
     <label for="id"><b>Id:</b></label>
     <input type="text" formControlName="id" id="id" [value]="defaultPreferredTime?.id" readonly>
-    
+
     <label for="day"><b>Nap:</b></label>
     <select formControlName="day" id="day">
       @for (day of days; track day) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SubjectDto} from "../../dto/subject-dto";
 import {SubjectService} from "../../service/subject.service";
@@ -13,7 +13,7 @@ import {SubjectService} from "../../service/subject.service";
   templateUrl: './subject.component.html',
   styleUrl: './subject.component.css'
 })
-export class SubjectComponent {
+export class SubjectComponent implements OnInit {
   subjects: SubjectDto[] = [];
   defaultSubject: SubjectDto | undefined;
 
