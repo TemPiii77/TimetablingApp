@@ -1,7 +1,7 @@
 <form [formGroup]="classroomForm" (ngSubmit)="handleSubmit($event)" method="post">
   <div class="container">
     <label for="id"><b>Id:</b></label>
-    <input type="text" formControlName="id" id="id" [value]="defaultClassroom?.id" readonly #idInput>
+    <input type="text" formControlName="id" id="id" [value]="defaultClassroom?.id" readonly>
 
     <label for="name"><b>Név:</b></label>
     <input type="text" formControlName="name" placeholder="Adja meg a terem nevét" id="name" required [value]="defaultClassroom?.name">
@@ -11,7 +11,6 @@
       <option value="sima">sima</option>
       <option value="informatika">informatika</option>
     </select>
-    <!--    <input type="text" formControlName="type" placeholder="Adja meg a terem típusát" id="type" required [value]="defaultClassroom?.type">-->
 
     <label for="doubleSize"><b>Dupla terem:</b></label>
     <input type="checkbox" formControlName="doubleSize" id="doubleSize" [checked]="defaultClassroom?.doubleSize">

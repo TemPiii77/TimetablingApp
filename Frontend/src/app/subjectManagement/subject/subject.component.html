@@ -1,7 +1,7 @@
 <form [formGroup]="subjectForm" (ngSubmit)="handleSubmit($event)" method="post">
   <div class="container">
     <label for="id"><b>Id:</b></label>
-    <input type="text" formControlName="id" id="id" [value]="defaultSubject?.id" readonly #idInput>
+    <input type="text" formControlName="id" id="id" [value]="defaultSubject?.id" readonly>
 
     <label for="name"><b>Név:</b></label>
     <input type="text" formControlName="name" placeholder="Adja meg a tárgy nevét" id="name" required [value]="defaultSubject?.name">
