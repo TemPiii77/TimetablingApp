@@ -1,1 +1,45 @@
-<p>scene-part works!</p>
+<form [formGroup]="scenePartForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultscenePart?.id" readonly>
+
+    <label for="scene"><b>Színtér:</b></label>
+    <select formControlName="scene" id="scene">
+      @for (scene of scenes; track scene.id) {
+        <option [ngValue]="{'id': scene.id, 'name': scene.name}" [selected]="defaultscenePart?.scene?.name === scene.name">{{scene.name + " " + scene.subject.name}}</option>
+      }
+    </select>
+
+    <label for="name"><b>Alszíntér neve:</b></label>
+    <input type="text" formControlName="name" placeholder="Adja meg az alszíntér nevét" id="name" required [value]="defaultscenePart?.name">
+
+    <label for="news"><b>Korlátozott írási lehetőség:</b></label>
+    <input type="checkbox" formControlName="news" id="news" [checked]="defaultscenePart?.news">
+    
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Színtér neve</td>
+    <td>Alszíntér neve</td>
+    <td>Korlátozott írási lehetőség</td>
+    <td>Tárgy</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (scenePart of sceneParts; track scenePart.id) {
+    <tr>
+      <td>{{scenePart.id}}</td>
+      <td>{{scenePart.scene.name}}</td>
+      <td>{{scenePart.name}}</td>
+      <td>{{scenePart.news ? 'igen' : 'nem'}}</td>
+      <td>{{scenePart.scene.subject.name}}</td>
+      <td (click)="deleteScenePart(scenePart.id)">Törlés</td>
+      <td (click)="updateSceneForm(scenePart)">Módosítás</td>
+    </tr>
+  }
+</table>

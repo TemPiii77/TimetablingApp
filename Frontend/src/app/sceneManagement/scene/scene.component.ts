@@ -66,7 +66,6 @@ export class SceneComponent implements OnInit{
     };
 
     if(event.submitter.name == "save") {
-      console.log(scene)
       this.sceneForm.get('id')?.setValue(null);
       scene.id = 0;
       this.saveScene(scene);
