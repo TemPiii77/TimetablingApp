@@ -1,1 +1,46 @@
-<p>subject-subject-requirement works!</p>
+<form [formGroup]="subjectSubjectRequirementForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="subject"><b>Tárgy:</b></label>
+    <select formControlName="subject" id="subject">
+      @for (subject of subjects; track subject) {
+        <option [value]="subject.id">{{ formatFields(subject) }}</option>
+      }
+    </select>
+
+    <label for="subjectRequirement"><b>Tárgy követelmény:</b></label>
+    <select formControlName="subjectRequirement" id="subjectRequirement">
+      @for (subjectRequirement of subjectRequirements; track subjectRequirement) {
+        <option [value]="subjectRequirement.id"> {{ formatFields(subjectRequirement) }} </option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Tárgy id</td>
+    <td>Tárgykövetelmény id</td>
+    <td>Tárgy neve</td>
+    <td>Szak</td>
+    <td>Évfolyam</td>
+    <td>Heti órák száma</td>
+    <td>Emelet óraszámú</td>
+    <td>Törlés</td>
+  </tr>
+  @for (subjectSubjectRequirement of subjectSubjectRequirements; track subjectSubjectRequirement.id) {
+    <tr>
+      <td>{{subjectSubjectRequirement.id.subjectId}}</td>
+      <td>{{subjectSubjectRequirement.id.subjectRequirementId}}</td>
+      <td>{{subjectSubjectRequirement.subject.name}}</td>
+      <td>{{subjectSubjectRequirement.subjectRequirement.field}}</td>
+      <td>{{subjectSubjectRequirement.subjectRequirement.grade}}</td>
+      <td>{{subjectSubjectRequirement.subjectRequirement.period}}</td>
+      <td>{{subjectSubjectRequirement.subjectRequirement.advanced ? "igen" : "nem"}}</td>
+      <td (click)="deleteSubjectSubjectRequirement(subjectSubjectRequirement.subject.id, subjectSubjectRequirement.subjectRequirement.id)">Törlés</td>
+    </tr>
+  }
+</table>
+
+
