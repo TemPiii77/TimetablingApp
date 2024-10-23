@@ -1,1 +1,53 @@
-<p>subject-requirement works!</p>
+<form [formGroup]="subjectRequirementForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultSubjectRequirement?.id" readonly>
+
+    <label for="field"><b>Szak:</b></label>
+    <select formControlName="field" id="field">
+      @for (field of fields; track field) {
+        <option [value]="field">{{field}}</option>
+      }
+    </select>
+
+    <label for="grade"><b>Évfolyam:</b></label>
+    <select formControlName="grade" id="grade">
+      <option *ngFor="let grade of [1,2,3,4,5,6,7,8,9,10,11,12,13,14]" [value]="grade">{{grade}}</option>
+    </select>
+
+    <label for="period"><b>Heti óraszám:</b></label>
+    <select formControlName="period" id="period">
+      <option *ngFor="let period of [1,2,3,4,5,6,7,8,9,10,11,12,13,14]" [value]="period">{{period}}</option>
+    </select>
+
+    <label for="advanced"><b>Emelet óraszámú:</b></label>
+    <input type="checkbox" formControlName="advanced" id="advanced" [checked]="defaultSubjectRequirement?.advanced">
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Szak</td>
+    <td>Évfolyam</td>
+    <td>Heti órák száma</td>
+    <td>Emelet óraszámú</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (subjectRequirement of subjectRequirements; track subjectRequirement.id) {
+    <tr>
+      <td>{{subjectRequirement.id}}</td>
+      <td>{{subjectRequirement.field}}</td>
+      <td>{{subjectRequirement.grade}}</td>
+      <td>{{subjectRequirement.period}}</td>
+      <td>{{subjectRequirement.advanced ? 'igen' : 'nem'}}</td>
+      <td (click)="deleteSubjectRequirement(subjectRequirement.id)">Törlés</td>
+      <td (click)="updateSubjectRequirementForm(subjectRequirement)">Módosítás</td>
+    </tr>
+  }
+</table>
+
