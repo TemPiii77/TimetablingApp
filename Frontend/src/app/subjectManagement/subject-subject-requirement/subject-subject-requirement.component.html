@@ -2,7 +2,7 @@
   <div class="container">
     <label for="subject"><b>Tárgy:</b></label>
     <select formControlName="subject" id="subject">
-      @for (subject of subjects; track subject) {
+      @for (subject of subjects; track subject.id) {
         <option [value]="subject.id">{{ formatFields(subject) }}</option>
       }
     </select>
