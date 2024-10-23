@@ -1,1 +1,50 @@
-<p>class-subject works!</p>
+<form [formGroup]="classSubjectForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="classId"><b>Osztály:</b></label>
+    <select formControlName="classId" id="classId">
+      @for (cclass of classes; track cclass.id) {
+        <option [value]="cclass.id">{{ formatFields(cclass) }}</option>
+      }
+    </select>
+
+    <label for="subjectId"><b>Tárgy:</b></label>
+    <select formControlName="subjectId" id="subjectId">
+      @for (subjectSubjectRequirement of subjectSubjectRequirements; track subjectSubjectRequirement.id) {
+        <option [value]="subjectSubjectRequirement.subject.id">
+          {{ formatFields(subjectSubjectRequirement.subject) + " " + formatFields(subjectSubjectRequirement.subjectRequirement) }}
+        </option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Osztály Id</td>
+    <td>Tárgy Id</td>
+    <td>Év</td>
+    <td>Évfolyam</td>
+    <td>Csoport</td>
+    <td>Szak</td>
+    <td>Tárgy neve</td>
+
+    <td>Törlés</td>
+  </tr>
+  @for (classSubject of classSubjects; track classSubject.id) {
+    <tr>
+      <td>{{classSubject.classField.id}}</td>
+      <td>{{classSubject.subject.id}}</td>
+      <td>{{classSubject.classField.year}}</td>
+      <td>{{classSubject.classField.grade}}</td>
+      <td>{{classSubject.classField.group}}</td>
+      <td>{{classSubject.classField.field}}</td>
+      <td>{{classSubject.subject.name}}</td>
+      <td (click)="deleteclassSubject(classSubject.classField.id, classSubject.subject.id)">Törlés</td>
+    </tr>
+  }
+</table>
+
+
+
