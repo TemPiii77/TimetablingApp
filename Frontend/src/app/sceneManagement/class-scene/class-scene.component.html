@@ -1,1 +1,49 @@
-<p>class-scene works!</p>
+<form [formGroup]="classSceneForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="classId"><b>Tárgy:</b></label>
+    <select formControlName="classId" id="classId">
+      @for (cclass of classes; track cclass.id) {
+        <option [value]="cclass.id">{{ formatFields(cclass) }}</option>
+      }
+    </select>
+
+    <label for="sceneId"><b>Tárgy követelmény:</b></label>
+    <select formControlName="sceneId" id="sceneId">
+      @for (scene of scenes; track scene.id) {
+        <option [value]="scene.id"> {{ scene.id + " " + scene.name + " " + scene.subject.name }} </option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Osztály id</td>
+    <td>Színtér id</td>
+    <td>Év</td>
+    <td>Évfolyam</td>
+    <td>Csoport</td>
+    <td>Szak</td>
+    <td>Színtér neve</td>
+    <td>Tárgy</td>
+    <td>Törlés</td>
+  </tr>
+  @for (classScene of classScenes; track classScene.id) {
+    <tr>
+      <td>{{classScene.classField.id}}</td>
+      <td>{{classScene.scene.id}}</td>
+      <td>{{classScene.classField.year}}</td>
+      <td>{{classScene.classField.grade}}</td>
+      <td>{{classScene.classField.group}}</td>
+      <td>{{classScene.classField.field}}</td>
+      <td>{{classScene.scene.name}}</td>
+      <td>{{classScene.scene.subject.name}}</td>
+      <td (click)="deleteclassScene(classScene.classField.id, classScene.scene.id)">Törlés</td>
+    </tr>
+  }
+</table>
+
+
+
