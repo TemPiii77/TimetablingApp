@@ -1,1 +1,39 @@
-<p>scene works!</p>
+<form [formGroup]="sceneForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultScene?.id" readonly>
+
+    <label for="name"><b>Név:</b></label>
+    <input type="text" formControlName="name" placeholder="Adja meg a színtér nevét" id="name" required [value]="defaultScene?.name">
+
+    <label for="subject"><b>Tárgy:</b></label>
+    <select formControlName="subject" id="subject">
+      @for (subject of subjects; track subject.id) {
+        <option [ngValue]="{'id': subject.id, 'name': subject.name}" [selected]="defaultScene?.subject?.name === subject.name">{{subject.name}}</option>
+      }
+    </select>
+
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Név</td>
+    <td>Tárgy</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (scene of scenes; track scene.id) {
+    <tr>
+      <td>{{scene.id}}</td>
+      <td>{{scene.name}}</td>
+      <td>{{scene.subject.name}}</td>
+      <td (click)="deleteScene(scene.id)">Törlés</td>
+      <td (click)="updateSceneForm(scene)">Módosítás</td>
+    </tr>
+  }
+</table>

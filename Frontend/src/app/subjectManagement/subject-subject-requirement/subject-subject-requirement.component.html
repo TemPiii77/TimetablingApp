@@ -9,7 +9,7 @@
 
     <label for="subjectRequirement"><b>Tárgy követelmény:</b></label>
     <select formControlName="subjectRequirement" id="subjectRequirement">
-      @for (subjectRequirement of subjectRequirements; track subjectRequirement) {
+      @for (subjectRequirement of subjectRequirements; track subjectRequirement.id) {
         <option [value]="subjectRequirement.id"> {{ formatFields(subjectRequirement) }} </option>
       }
     </select>
