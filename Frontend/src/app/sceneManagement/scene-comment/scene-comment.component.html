@@ -1,1 +1,58 @@
-<p>scene-comment works!</p>
+<form [formGroup]="sceneCommentForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultsceneComment?.id" readonly>
+
+    <label for="user"><b>Felhasználó:</b></label>
+    <select formControlName="user" id="user">
+      @for (user of users; track user.id) {
+        <option [ngValue]="{'id': user.id, 'email': user.email, 'lastName': user.lastName, 'firstName': user.firstName, 'password': '', 'role': user.role}" [selected]="defaultsceneComment?.user?.id === user.id">
+          {{user.id + " " + user.lastName + " " + user.firstName}}
+        </option>
+      }
+    </select>
+
+    <label for="scenePart"><b>Alszíntér:</b></label>
+    <select formControlName="scenePart" id="scenePart">
+      @for (scenePart of sceneParts; track scenePart.id) {
+        <option [ngValue]="{'id': scenePart.id, 'name': scenePart.name, 'news': scenePart.news, 'scene': scenePart.scene}" [selected]="defaultsceneComment?.scenePart?.name === scenePart.name">
+          {{scenePart.scene.name + " " + scenePart.name}}
+        </option>
+      }
+    </select>
+
+    <label for="content"><b>Tartalom:</b></label>
+    <input type="text" formControlName="content" placeholder="Adja meg az comment tartalmát" id="content" required [value]="defaultsceneComment?.content">
+
+    <label for="dateRecorded"><b>Létrehozási idő:</b></label>
+    <input type="text" formControlName="dateRecorded" id="dateRecorded" [value]="getTimestampInMilliseconds(defaultsceneComment?.dateRecorded) | date : 'yyyy-MM-dd HH:mm:ss'" readonly>
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Tartalom</td>
+    <td>Létrehozási idő</td>
+    <td>Felhasználó</td>
+    <td>Színtér</td>
+    <td>Alszíntér</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (sceneComment of sceneComments; track sceneComment.id) {
+    <tr>
+      <td>{{sceneComment.id}}</td>
+      <td>{{sceneComment.content}}</td>
+      <td>{{getTimestampInMilliseconds(sceneComment.dateRecorded) | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+      <td>{{sceneComment.user.id + " " + sceneComment.user.lastName + " " + sceneComment.user.firstName}}</td>
+      <td>{{sceneComment.scenePart.scene.name}}</td>
+      <td>{{sceneComment.scenePart.name}}</td>
+      <td (click)="deleteSceneComment(sceneComment.id)">Törlés</td>
+      <td (click)="updateSceneForm(sceneComment)">Módosítás</td>
+    </tr>
+  }
+</table>
