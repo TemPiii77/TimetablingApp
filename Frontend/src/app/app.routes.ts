@@ -7,6 +7,7 @@ import {PreferredTimeContainerComponent} from "./preferredTimeManagement/preferr
 import {TimeslotComponent} from "./timeslotManagement/timeslot/timeslot.component";
 import {ClassContainerComponent} from "./classManagement/class-container/class-container.component";
 import {ClassroomComponent} from "./classroomManagement/classroom/classroom.component";
+import {SceneContainerComponent} from "./sceneManagement/scene-container/scene-container.component";
 
 export const routes: Routes = [
   {
@@ -54,8 +55,12 @@ export const routes: Routes = [
     path: 'timeslot',
     title: '',
     component: TimeslotComponent,
-  }
-
+  },
+  {
+    path: 'forum',
+    title: '',
+    component: SceneContainerComponent,
+  },
 
 
 
