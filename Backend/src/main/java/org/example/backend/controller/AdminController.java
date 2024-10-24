@@ -235,7 +235,7 @@ public class AdminController {
         teacherService.updateTeacher(teacherDto);
     }
 
-    
+
     @GetMapping("/classroom")
     public List<ClassroomDto> getClassrooms() {
         return classroomService.getClassrooms();
