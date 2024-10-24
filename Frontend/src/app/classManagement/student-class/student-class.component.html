@@ -1,1 +1,48 @@
 <h1>Hallgató-Osztály</h1>
+<form [formGroup]="studentClassForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="studentId"><b>Hallgató:</b></label>
+    <select formControlName="studentId" id="studentId">
+      @for (student of students; track student.id) {
+        <option [value]="student.id">{{ student.user.id + " - " + student.user.lastName + " " + student.user.firstName}}</option>
+      }
+    </select>
+
+    <label for="classId"><b>Osztály:</b></label>
+    <select formControlName="classId" id="classId">
+      @for (cclass of classes; track cclass.id) {
+        <option [value]="cclass.id"> {{ formatFields(cclass) }} </option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Hallgató id</td>
+    <td>Osztály id</td>
+    <td>Hallgató neve</td>
+    <td>Év</td>
+    <td>Évfolyam</td>
+    <td>Csoport</td>
+    <td>Szak</td>
+    <td>Törlés</td>
+  </tr>
+  @for (studentClass of studentClasses; track studentClass.id) {
+    <tr>
+      <td>{{studentClass.id.studentId}}</td>
+      <td>{{studentClass.id.classId}}</td>
+      <td>{{studentClass.student.user.lastName + " " + studentClass.student.user.firstName}}</td>
+      <td>{{studentClass.classField.year}}</td>
+      <td>{{studentClass.classField.grade}}</td>
+      <td>{{studentClass.classField.group}}</td>
+      <td>{{studentClass.classField.field}}</td>
+      <td (click)="deleteStudentClass(studentClass.student.id, studentClass.classField.id)">Törlés</td>
+    </tr>
+  }
+</table>
+
+
+

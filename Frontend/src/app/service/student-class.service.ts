@@ -10,7 +10,7 @@ import {StudentClassIdDto} from "../dto/student-class-id-dto";
 export class StudentClassService {
 
   private studentClassesSubject = new BehaviorSubject<StudentClassDto[]>([]);
-  studentClasses = this.studentClassesSubject.asObservable();
+  studentClasses$ = this.studentClassesSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
