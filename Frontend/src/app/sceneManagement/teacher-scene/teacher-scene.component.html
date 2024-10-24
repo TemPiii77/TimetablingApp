@@ -1,2 +1,41 @@
 <h1>Tanár-Színtér</h1>
-<p>teacher-scene works!</p>
+<form [formGroup]="teacherSceneIdForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="teacherId"><b>Tanár:</b></label>
+    <select formControlName="teacherId" id="teacherId">
+      @for (teacher of teachers; track teacher.id) {
+        <option [value]="teacher.id">{{ teacher.user.id + " - " + teacher.user.lastName + " " + teacher.user.firstName }}</option>
+      }
+    </select>
+
+    <label for="sceneId"><b>Színtér:</b></label>
+    <select formControlName="sceneId" id="sceneId">
+      @for (scene of scenes; track scene.id) {
+        <option [value]="scene.id"> {{ scene.id + " - " + scene.name + " - " + scene.subject.name}} </option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Tanár id</td>
+    <td>Színtér id</td>
+    <td>Tanár neve</td>
+    <td>Színtér neve</td>
+    <td>Színtérhez tartozó tárgy</td>
+    <td>Törlés</td>
+  </tr>
+  @for (teacherScene of teacherScenes; track teacherScene.id) {
+    <tr>
+      <td>{{teacherScene.teacher.user.id}}</td>
+      <td>{{teacherScene.scene.id}}</td>
+      <td>{{teacherScene.teacher.user.lastName + " " + teacherScene.teacher.user.firstName}}</td>
+      <td>{{teacherScene.scene.name}}</td>
+      <td>{{teacherScene.scene.subject.name}}</td>
+      <td (click)="deleteTeacherScene(teacherScene.teacher.user.id, teacherScene.scene.id)">Törlés</td>
+    </tr>
+  }
+</table>
