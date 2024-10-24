@@ -1,1 +1,41 @@
 <h1>Tanár-Preferált idő</h1>
+<form [formGroup]="teacherPreferredTimeForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="teacherId"><b>Tanár:</b></label>
+    <select formControlName="teacherId" id="teacherId">
+      @for (teacher of teachers; track teacher.id) {
+        <option [value]="teacher.id">{{ teacher.user.id + " - " + teacher.user.lastName + " " + teacher.user.firstName }}</option>
+      }
+    </select>
+
+    <label for="preferredTimeId"><b>Preferált idő:</b></label>
+    <select formControlName="preferredTimeId" id="preferredTimeId">
+      @for (preferredTime of preferredTimes; track preferredTime.id) {
+        <option [value]="preferredTime.id"> {{ formatFields(preferredTime) }} </option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Tanár id</td>
+    <td>Preferált idő id</td>
+    <td>Tanár neve</td>
+    <td>Nap</td>
+    <td>Óra</td>
+    <td>Törlés</td>
+  </tr>
+  @for (teacherPreferredTime of teacherPreferredTimes; track teacherPreferredTime.id) {
+    <tr>
+      <td>{{teacherPreferredTime.teacher.user.id}}</td>
+      <td>{{teacherPreferredTime.preferredTime.id}}</td>
+      <td>{{teacherPreferredTime.teacher.user.lastName + " " + teacherPreferredTime.teacher.user.firstName}}</td>
+      <td>{{teacherPreferredTime.preferredTime.day}}</td>
+      <td>{{teacherPreferredTime.preferredTime.hour}}</td>
+      <td (click)="deleteTeacherPreferredTime(teacherPreferredTime.teacher.user.id, teacherPreferredTime.preferredTime.id)">Törlés</td>
+    </tr>
+  }
+</table>
