@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import {HomepageComponent} from "./homepage/homepage.component";
 import {LoginComponent} from "./auth/login/login.component";
-import {UserManagementComponent} from "./user/user-management/user-management.component";
 import {SubjectContainerComponent} from "./subjectManagement/subject-container/subject-container.component";
 import {PreferredTimeContainerComponent} from "./preferredTimeManagement/preferred-time-container/preferred-time-container.component";
 import {TimeslotComponent} from "./timeslotManagement/timeslot/timeslot.component";
 import {ClassContainerComponent} from "./classManagement/class-container/class-container.component";
 import {ClassroomComponent} from "./classroomManagement/classroom/classroom.component";
 import {SceneContainerComponent} from "./sceneManagement/scene-container/scene-container.component";
+import {UserContainerComponent} from "./userManagement/user-container/user-container.component";
 
 export const routes: Routes = [
   {
@@ -29,7 +29,7 @@ export const routes: Routes = [
   {
     path: 'user',
     title: '',
-    component: UserManagementComponent,
+    component: UserContainerComponent,
   },
   {
     path: 'subject',
