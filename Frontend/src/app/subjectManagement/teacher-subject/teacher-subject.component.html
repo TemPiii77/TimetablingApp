@@ -1,2 +1,40 @@
 <h1>Tanár-Tárgy</h1>
+<form [formGroup]="teacherSubjectIdForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="teacherId"><b>Tanár:</b></label>
+    <select formControlName="teacherId" id="teacherId">
+      @for (teacher of teachers; track teacher.id) {
+        <option [value]="teacher.id">{{ teacher.user.id + " - " + teacher.user.lastName + " " + teacher.user.firstName }}</option>
+      }
+    </select>
+
+    <label for="subjectId"><b>Tárgy:</b></label>
+    <select formControlName="subjectId" id="subjectId">
+      @for (subject of subjects; track subject.id) {
+        <option [value]="subject.id"> {{ formatFields(subject) }} </option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Tanár id</td>
+    <td>Tárgy id</td>
+    <td>Tanár neve</td>
+    <td>Tárgy neve</td>
+    <td>Törlés</td>
+  </tr>
+  @for (teacherSubject of teacherSubjects; track teacherSubject.id) {
+    <tr>
+      <td>{{teacherSubject.teacher.id}}</td>
+      <td>{{teacherSubject.subject.id}}</td>
+      <td>{{teacherSubject.teacher.user.lastName + " " + teacherSubject.teacher.user.firstName}}</td>
+      <td>{{teacherSubject.subject.name}}</td>
+      <td (click)="deleteTeacherSubject(teacherSubject.teacher.id, teacherSubject.subject.id)">Törlés</td>
+    </tr>
+  }
+</table>
 
