@@ -1,1 +1,78 @@
-<p>user works!</p>
+<h1>Felhasználók</h1>
+<form [formGroup]="userForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" placeholder="Adja meg az azonosítót" required [value]="defaultUser?.id" [minLength]="6" [maxlength]="6">
+
+    <label for="email"><b>Email:</b></label>
+    <input type="text" formControlName="email" placeholder="Adja meg az e-mail címet" id="email" required [value]="defaultUser?.email">
+
+    <label for="lastName"><b>Vezetéknév:</b></label>
+    <input type="text" formControlName="lastName" placeholder="Adja meg a vezetéknevet" id="lastName" required [value]="defaultUser?.lastName">
+
+    <label for="firstName"><b>Keresztnév:</b></label>
+    <input type="text" formControlName="firstName" placeholder="Adja meg a keresztnevet" id="firstName" required [value]="defaultUser?.firstName">
+
+    <label for="password"><b>Jelszó:</b></label>
+    <input type="text" formControlName="password" placeholder="Adja meg a jelszót" id="password" required [value]="defaultUser?.password">
+
+    <label for="role"><b>Jogkör:</b></label>
+    <select formControlName="role" id="role">
+      <option value="ROLE_STUDENT">Hallgató</option>
+      <option value="ROLE_TEACHER">Tanár</option>
+      <option value="ROLE_ADMIN">Admin</option>
+    </select>
+
+    @switch (userForm.value.role != null) {
+      @case (userForm.value.role === "ROLE_STUDENT") {
+        <label for="class"><b>Osztály:</b></label>
+        <select formControlName="classId" id="class">
+          @for (cclass of classes; track cclass.id) {
+            <option [value]="cclass.id"> {{ formatFields(cclass) }} </option>
+          }
+        </select>
+      }
+      @case (userForm.value.role === "ROLE_TEACHER") {
+        <label for="jobTitle"><b>Munkaköri beosztás:</b></label>
+        <select formControlName="roleBasedInformation" id="jobTitle">
+          <option value="Főállású">Főállású</option>
+          <option value="Óraadó">Óraadó</option>
+        </select>
+      }
+    }
+
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+
+
+
+
+  </div>
+</form>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>E-mail cím</td>
+    <td>Vezetéknév</td>
+    <td>Keresztnév</td>
+    <td>Jelszó</td>
+    <td>Jogkör</td>
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (user of users; track user.id) {
+    <tr>
+      <td>{{user.id}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.password}}</td>
+      <td>{{user.role}}</td>
+      <td (click)="deleteUser(user.id)">Törlés</td>
+      <td (click)="updateUserForm(user)">Módosítás</td>
+    </tr>
+  }
+</table>
+

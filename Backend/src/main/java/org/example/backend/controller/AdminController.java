@@ -200,7 +200,6 @@ public class AdminController {
 
     @PostMapping("/register")
     public void saveUser(@RequestBody UserDto userDto, @RequestParam("name") String roleBasedInformation) {
-
         userService.saveUser(userDto, roleBasedInformation);
     }
 

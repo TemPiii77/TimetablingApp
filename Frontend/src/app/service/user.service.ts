@@ -25,7 +25,7 @@ export class UserService {
     });
   }
 
-  deleteUser(id: number): Observable<void> {
+  deleteUser(id: string): Observable<void> {
     return this.http.delete<void>(`http://localhost:8080/admin/user/${id}`);
   }
 

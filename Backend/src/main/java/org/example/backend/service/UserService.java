@@ -34,8 +34,10 @@ public class UserService {
         switch (userDto.getRole()) {
             case "ROLE_TEACHER":
                 user.setTeacher(new Teacher(user.getId()), roleBasedInformation);
+                break;
             case "ROLE_ADMIN":
                 user.setAdmin(new Admin(user.getId()));
+                break;
             default:
                 user.setStudent(new Student(user.getId()));
         }
@@ -58,8 +60,10 @@ public class UserService {
         switch (userDto.getRole()) {
             case "ROLE_TEACHER":
                 user.setTeacher(new Teacher(user.getId()), roleBasedInformation);
+                break;
             case "ROLE_ADMIN":
                 user.setAdmin(new Admin(user.getId()));
+                break;
             default:
                 user.setStudent(new Student(user.getId()));
         }
