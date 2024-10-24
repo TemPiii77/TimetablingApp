@@ -1,1 +1,87 @@
 <h1>Órarend</h1>
+<form [formGroup]="timeslotForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultTimeslot?.id" readonly>
+
+    <label for="year"><b>Év:</b></label>
+    <input type="number" min="2000" max="2099" step="1" value="2024" formControlName="year" id="year" [value]="defaultTimeslot?.year">
+
+    <label for="day"><b>Nap:</b></label>
+    <select formControlName="day" id="day">
+      @for (day of days; track day) {
+        <option [value]="day">{{day}}</option>
+      }
+    </select>
+
+    <label for="hour"><b>Óra:</b></label>
+    <select formControlName="hour" id="hour">
+      <option *ngFor="let hour of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="hour">{{hour}}</option>
+    </select>
+
+    <label for="classField"><b>Osztály:</b></label>
+    <select formControlName="classField" id="classField">
+      @for (cclass of classes; track cclass.id) {
+        <option [ngValue]="cclass">{{ formatFields(cclass) }}</option>
+      }
+    </select>
+
+    <label for="teacher"><b>Tanár:</b></label>
+    <select formControlName="teacher" id="teacher">
+      @for (teacher of teachers; track teacher.id) {
+        <option [ngValue]="teacher">{{ teacher.user.id + " " + teacher.user.lastName + " " + teacher.user.firstName }}</option>
+      }
+    </select>
+
+    <label for="subject"><b>Tárgy:</b></label>
+    <select formControlName="subject" id="subject">
+      @for (subjectSubjectRequirement of subjectSubjectRequirements; track subjectSubjectRequirement.id) {
+        <option [ngValue]="subjectSubjectRequirement.subject">
+          {{ formatFields(subjectSubjectRequirement.subject) + " " + formatFields(subjectSubjectRequirement.subjectRequirement) }}
+        </option>
+      }
+    </select>
+
+    <label for="classroom"><b>Terem:</b></label>
+    <select formControlName="classroom" id="classroom">
+      @for (classroom of classrooms; track classroom.id) {
+        <option [ngValue]="classroom">{{ formatFields(classroom) }}</option>
+      }
+    </select>
+
+    <button type="submit" name="save">Mentés</button>
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+<table id="timeslots">
+  <tr>
+    <td>Órarend időrés Id</td>
+    <td>Év</td>
+    <td>Nap</td>
+    <td>óra</td>
+    <td>Osztály</td>
+    <td>Tanár</td>
+    <td>Tárgy</td>
+    <td>Terem</td>
+
+    <td>Törlés</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (timeslot of timeslots; track timeslot.id) {
+    <tr>
+      <td>{{timeslot.id}}</td>
+      <td>{{timeslot.year}}</td>
+      <td>{{timeslot.day}}</td>
+      <td>{{timeslot.hour}}</td>
+      <td>{{formatFields(timeslot.classField)}}</td>
+      <td>{{timeslot.teacher.user.id + " " + timeslot.teacher.user.lastName + " " + timeslot.teacher.user.firstName}}</td>
+      <td>{{formatFields(timeslot.subject)}}</td>
+      <td>{{formatFields(timeslot.classroom)}}</td>
+
+      <td (click)="deleteTimeslot(timeslot.id)">Törlés</td>
+      <td (click)="updateTimeslotForm(timeslot)">Módosítás</td>
+    </tr>
+  }
+</table>
