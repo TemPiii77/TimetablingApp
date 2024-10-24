@@ -1,1 +1,18 @@
-<p>admin works!</p>
+<h1>Adminok</h1>
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Vezetéknév</td>
+    <td>Keresztnév</td>
+    <td>E-mail cím</td>
+  </tr>
+  @for (admin of admins; track admin.id) {
+    <tr>
+      <td>{{admin.id}}</td>
+      <td>{{admin.user.lastName}}</td>
+      <td>{{admin.user.firstName}}</td>
+      <td>{{admin.user.email}}</td>
+    </tr>
+  }
+</table>

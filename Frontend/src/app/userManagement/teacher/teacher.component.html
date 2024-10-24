@@ -1,1 +1,46 @@
-<p>teacher works!</p>
+<h1>Tanárok</h1>
+<form [formGroup]="teacherForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <label for="id"><b>Id:</b></label>
+    <input type="text" formControlName="id" id="id" [value]="defaultTeacher?.id" readonly>
+
+    <label for="user"><b>Tanár:</b></label>
+    <select formControlName="user" id="user">
+      @for (teacher of teachers; track teacher.id) {
+        <option [ngValue]="{teacher}" [selected]="defaultTeacher?.id === teacher.id" [disabled]="true">
+          {{teacher.id + " " + teacher.user.lastName + " " + teacher.user.firstName}}
+        </option>
+      }
+    </select>
+
+    <label for="jobTitle"><b>Munkaköri beosztás:</b></label>
+    <select formControlName="jobTitle" id="jobTitle">
+      <option value="Főállású">Főállású</option>
+      <option value="Óraadó">Óraadó</option>
+    </select>
+
+    <button type="submit" name="update">Módosítás</button>
+  </div>
+</form>
+
+
+<table>
+  <tr>
+    <td>Id</td>
+    <td>Vezetéknév</td>
+    <td>Keresztnév</td>
+    <td>E-mail cím</td>
+    <td>Munkaköri beosztás</td>
+    <td>Módosítás</td>
+  </tr>
+  @for (teacher of teachers; track teacher.id) {
+    <tr>
+      <td>{{teacher.id}}</td>
+      <td>{{teacher.user.lastName}}</td>
+      <td>{{teacher.user.firstName}}</td>
+      <td>{{teacher.user.email}}</td>
+      <td>{{teacher.jobTitle}}</td>
+      <td (click)="updateTeacherForm(teacher)">Módosítás</td>
+    </tr>
+  }
+</table>
