@@ -21,6 +21,9 @@ import java.util.Map;
 public class AdminController {
 
     private UserService userService;
+    private StudentService studentService;
+    private AdminService adminService;
+    private TeacherService teacherService;
     private ClassroomService classroomService;
     private SubjectService subjectService;
     private ClassService classService;
@@ -46,9 +49,25 @@ public class AdminController {
     private UserChatService userChatService;
 
 
+
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    @Autowired
+    public void setAdminService(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
+    @Autowired
+    public void setTeacherService(TeacherService teacherService) {
+        this.teacherService = teacherService;
     }
 
     @Autowired
@@ -169,12 +188,6 @@ public class AdminController {
 
 
 
-
-
-
-
-
-
     @GetMapping("/user")
     public List<UserDto> getUsers() {
         return userService.getUsers();
@@ -202,6 +215,27 @@ public class AdminController {
     }
 
 
+    @GetMapping("/student")
+    public List<StudentDto> getStudents() {
+        return studentService.getStudents();
+    }
+
+    @GetMapping("/admin")
+    public List<AdminDto> getAdmins() {
+        return adminService.getAdmins();
+    }
+
+    @GetMapping("/teacher")
+    public List<TeacherDto> getTeachers() {
+        return teacherService.getTeachers();
+    }
+
+    @PutMapping("/teacher")
+    public void updateTeacher(@RequestBody TeacherDto teacherDto) {
+        teacherService.updateTeacher(teacherDto);
+    }
+
+    
     @GetMapping("/classroom")
     public List<ClassroomDto> getClassrooms() {
         return classroomService.getClassrooms();
@@ -826,12 +860,6 @@ public class AdminController {
     public void deleteUserChat(@PathVariable String userId, @PathVariable Integer chatId) {
         userChatService.deleteUserChat(userId, chatId);
     }
-
-
-
-
-
-
 
 
 
