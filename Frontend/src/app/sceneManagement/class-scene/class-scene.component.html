@@ -8,7 +8,7 @@
       }
     </select>
 
-    <label for="sceneId"><b>Tárgy követelmény:</b></label>
+    <label for="sceneId"><b>Színtér:</b></label>
     <select formControlName="sceneId" id="sceneId">
       @for (scene of scenes; track scene.id) {
         <option [value]="scene.id"> {{ scene.id + " " + scene.name + " " + scene.subject.name }} </option>

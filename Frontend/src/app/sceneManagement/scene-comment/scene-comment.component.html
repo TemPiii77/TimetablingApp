@@ -23,7 +23,7 @@
     </select>
 
     <label for="content"><b>Tartalom:</b></label>
-    <input type="text" formControlName="content" placeholder="Adja meg az comment tartalmát" id="content" required [value]="defaultsceneComment?.content">
+    <input type="text" formControlName="content" placeholder="Adja meg a komment tartalmát" id="content" required [value]="defaultsceneComment?.content">
 
     <label for="dateRecorded"><b>Létrehozási idő:</b></label>
     <input type="text" formControlName="dateRecorded" id="dateRecorded" [value]="getTimestampInMilliseconds(defaultsceneComment?.dateRecorded) | date : 'yyyy-MM-dd HH:mm:ss'" readonly>
