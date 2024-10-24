@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-timeslot',
   standalone: true,
-  imports: [],
+    imports: [
+        FormsModule
+    ],
   templateUrl: './timeslot.component.html',
   styleUrl: './timeslot.component.css'
 })

@@ -28,7 +28,7 @@ button:hover {
 
 form {
   background-color: #fefefe;
-  margin: 3% auto 5% auto;
+  margin: 1% auto 2% auto;
   border: 1px solid #888;
   width: 30%;
   border-radius: 10px;
@@ -104,6 +104,10 @@ table tr:hover {
   table tr:nth-child(1) td::before {
     display: none;
   }
+}
+
+h1 {
+  text-align: center;
 }
 
 
