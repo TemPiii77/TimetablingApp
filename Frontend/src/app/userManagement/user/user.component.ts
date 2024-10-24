@@ -79,8 +79,6 @@ export class UserComponent implements OnInit{
     let roleBasedInformation = this.userForm.value.roleBasedInformation;
 
     if(event.submitter.name == "save") {
-      console.log(user);
-      console.log(roleBasedInformation)
       this.saveUser(user, roleBasedInformation!);
       if(this.userForm.value.classId != null) {
 
@@ -88,7 +86,6 @@ export class UserComponent implements OnInit{
           studentId: user.id,
           classId: this.userForm.value.classId ? Number(this.userForm.value.classId) : 0
         }
-        console.log(studentClassId)
         this.studentClassService.saveStudentClass(studentClassId)
       }
     }
