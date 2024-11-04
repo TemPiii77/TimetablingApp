@@ -7,6 +7,13 @@ import org.example.backend.repository.ClassroomRepository;
 import org.example.backend.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +25,16 @@ public class UserService {
     private ModelMapper modelMapper;
 
     @Autowired
+    private JWTService jwtService;
+
+    private final AuthenticationManager authManager;
+
+    @Autowired
+    public UserService(AuthenticationManager authManager) {
+        this.authManager = authManager;
+    }
+
+    @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -27,6 +44,23 @@ public class UserService {
         this.modelMapper = modelMapper;
     }
 
+
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
+    public User register(User user) {
+        user.setPassword(encoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return user;
+    }
+
+    public String verify(User user) {
+        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getId(), user.getPassword()));
+        if (authentication.isAuthenticated()) {
+            return jwtService.generateToken(user.getId());
+        } else {
+            return "fail";
+        }
+    }
 
     public void saveUser(UserDto userDto, String roleBasedInformation) {
         User user = modelMapper.map(userDto, User.class);

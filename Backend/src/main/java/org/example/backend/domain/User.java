@@ -3,7 +3,9 @@ package org.example.backend.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
+@Component
 @Getter
 @Setter
 @Entity

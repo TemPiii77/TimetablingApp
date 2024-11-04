@@ -185,9 +185,6 @@ public class AdminController {
         this.userChatService = userChatService;
     }
 
-
-
-
     @GetMapping("/user")
     public List<UserDto> getUsers() {
         return userService.getUsers();
