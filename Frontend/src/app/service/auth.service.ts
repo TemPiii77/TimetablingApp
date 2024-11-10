@@ -3,12 +3,13 @@ import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {UserDto} from "../dto/user-dto";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private token: string = "";
+  token: string = "";
 
   constructor(private http: HttpClient,
               private cookieSerivce: CookieService,
@@ -30,9 +31,7 @@ export class AuthService {
     });
   }
 
-  userInformation(token: string) {
-    this.http.post("http://localhost:8080/userInformation", token, {responseType: 'text'}).subscribe((resultData) => {
-      console.log(resultData)
-    });
+  userInformation(token: string): Observable<UserDto> {
+    return this.http.post<UserDto>("http://localhost:8080/userInformation", token);
   }
 }

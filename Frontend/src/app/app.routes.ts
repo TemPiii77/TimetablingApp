@@ -8,6 +8,7 @@ import {ClassContainerComponent} from "./classManagement/class-container/class-c
 import {ClassroomComponent} from "./classroomManagement/classroom/classroom.component";
 import {SceneContainerComponent} from "./sceneManagement/scene-container/scene-container.component";
 import {UserContainerComponent} from "./userManagement/user-container/user-container.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 export const routes: Routes = [
   {
@@ -23,8 +24,13 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    title: '',
+    title: 'Főoldal',
     component: HomepageComponent,
+  },
+  {
+    path: 'profile',
+    title: '',
+    component: ProfileComponent,
   },
   {
     path: 'user',

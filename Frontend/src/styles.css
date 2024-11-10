@@ -111,4 +111,42 @@ h1 {
 }
 
 
+.vertical-table tr:first-child {
+  background-color: white !important;
+  font-weight: normal;
+
+}
+
+.vertical-table tr:first-child:hover {
+  background-color: #f1f1f1 !important; /* Egy sötétebb árnyalat a hover állapothoz */
+  color: #222222 !important;
+  cursor: pointer;
+}
+
+.vertical-table {
+  width: 50%;
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.vertical-table th,
+.vertical-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.vertical-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  width: 30%;
+}
+
+.vertical-table td {
+  width: 70%;
+}
+
+
+
 

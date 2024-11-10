@@ -1,0 +1,26 @@
+<div *ngIf="currentUser | async as user">
+  <table class="vertical-table">
+    <tr>
+      <th>Egyedi azonosító</th>
+      <td>{{ user.id }}</td>
+    </tr>
+    <tr>
+      <th>Email cím</th>
+      <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+      <th>Vezetéknév</th>
+      <td>{{ user.lastName }}</td>
+    </tr>
+    <tr>
+      <th>Keresztnév</th>
+      <td>{{ user.firstName }}</td>
+    </tr>
+    <tr>
+      <th>Jogkör</th>
+      <td>{{ user.role.substring(5) }}</td>
+    </tr>
+  </table>
+</div>
+
+
