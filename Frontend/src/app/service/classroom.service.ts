@@ -16,10 +16,7 @@ export class ClassroomService {
               private authService: AuthService) {}
 
   listClassrooms(): void {
-
-
-
-    this.http.get<ClassroomDto[]>("http://localhost:8080/admin/classroom").subscribe(resultData => {
+    this.http.get<ClassroomDto[]>("http://localhost:8080/admin/classroom", {headers: this.authService.headers}).subscribe(resultData => {
       this.classroomsSubject.next(resultData);
     });
   }
