@@ -15,16 +15,8 @@ import {AsyncPipe, CommonModule} from "@angular/common";
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent{
 
-  currentUser: Observable<UserDto> | undefined;
-
-  constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {
-    this.currentUser = this.authService.userInformation(this.authService.token);
-  }
-
-
+  constructor(protected authService: AuthService) {}
 
 }

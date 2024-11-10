@@ -1,4 +1,4 @@
-<div *ngIf="currentUser | async as user">
+<div *ngIf="this.authService.currentUser | async as user">
   <table class="vertical-table">
     <tr>
       <th>Egyedi azonosító</th>
