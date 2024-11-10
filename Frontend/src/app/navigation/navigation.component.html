@@ -1,31 +1,33 @@
-<body>
-<div class="navbar">
-  <a routerLink="/home">Főoldal</a>
-  <div class="dropdown">
-    <button class="dropbtn">Erőforrások kezelése</button>
-    <div class="dropdown-content">
-      <div class="row">
-        <div class="column">
-          <a routerLink="/user">Személy</a>
-          <a routerLink="/class">Osztály</a>
-          <a routerLink="/forum">Fórum</a>
-        </div>
-        <div class="column">
-          <a routerLink="/subject">Tantárgy</a>
-          <a routerLink="/preferredTime">Preferált idő</a>
-        </div>
-        <div class="column">
-          <a routerLink="/classroom">Terem</a>
-          <a routerLink="/timeslot">Órarend</a>
+@if (authService.isAuthenticated()) {
+  <div class="navbar">
+    <a routerLink="/home">Főoldal</a>
+    <div class="dropdown">
+      <button class="dropbtn">Erőforrások kezelése</button>
+      <div class="dropdown-content">
+        <div class="row">
+          <div class="column">
+            <a routerLink="/user">Személy</a>
+            <a routerLink="/class">Osztály</a>
+            <a routerLink="/forum">Fórum</a>
+          </div>
+          <div class="column">
+            <a routerLink="/subject">Tantárgy</a>
+            <a routerLink="/preferredTime">Preferált idő</a>
+          </div>
+          <div class="column">
+            <a routerLink="/classroom">Terem</a>
+            <a routerLink="/timeslot">Órarend</a>
+          </div>
         </div>
       </div>
     </div>
+    <a href="#home">Fórum</a>
+    <a href="#home">Chat</a>
+    <a id="logout" (click)="this.authService.logout()">Kijelentkezés</a>
+    <a id="profile" routerLink="/profile">Profil</a>
   </div>
-  <a href="#home">Fórum</a>
-  <a href="#home">Chat</a>
-  <a href="/login" id="logout">Kijelentkezés</a>
-  <a id="profile" routerLink="/profile">Profil</a>
-</div>
+}
 
-</body>
+
+
 

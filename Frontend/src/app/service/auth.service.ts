@@ -13,7 +13,7 @@ export class AuthService {
   token: string = "";
 
   constructor(private http: HttpClient,
-              private cookieSerivce: CookieService,
+              private cookieService: CookieService,
               private router: Router) { }
 
   login(user: UserDto): void {
@@ -30,8 +30,8 @@ export class AuthService {
       )
       .subscribe((resultData) => {
         if (resultData) {
-          this.cookieSerivce.set('token', resultData);
-          this.token = this.cookieSerivce.get('token');
+          this.cookieService.set('token', resultData);
+          this.token = this.cookieService.get('token');
           console.log(this.token);
           this.currentUser = this.userInformation(this.token);
 
@@ -40,9 +40,18 @@ export class AuthService {
       });
   }
 
+  logout(): void {
+    this.cookieService.delete('token');
+    this.router.navigate(['/login']);
+  }
+
   userInformation(token: string): Observable<UserDto> {
     return this.http.post<UserDto>("http://localhost:8080/userInformation", token);
   }
 
-  
+  isAuthenticated(): boolean {
+    const token = this.cookieService.get('token');
+    return !!token;
+  }
+
 }
