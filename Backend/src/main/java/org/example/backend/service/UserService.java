@@ -47,13 +47,13 @@ public class UserService {
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    public User register(User user) {
-        user.setPassword(encoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return user;
+    public UserDto getName(String token) {
+        String id = jwtService.extractUserName(token);
+        return getUser(id);
     }
 
-    public String verify(User user) {
+    public String verify(UserDto userDto) {
+        User user = modelMapper.map(userDto, User.class);
         Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getId(), user.getPassword()));
         if (authentication.isAuthenticated()) {
             return jwtService.generateToken(user.getId());
@@ -64,6 +64,7 @@ public class UserService {
 
     public void saveUser(UserDto userDto, String roleBasedInformation) {
         User user = modelMapper.map(userDto, User.class);
+        user.setPassword(encoder.encode(user.getPassword()));
 
         switch (userDto.getRole()) {
             case "ROLE_TEACHER":
