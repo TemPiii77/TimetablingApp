@@ -22,17 +22,17 @@ export class ClassroomService {
   }
 
   saveClassroom(newClassroom: ClassroomDto): void {
-    this.http.post<ClassroomDto>("http://localhost:8080/admin/classroom", newClassroom).subscribe(() => {
+    this.http.post<ClassroomDto>("http://localhost:8080/admin/classroom", newClassroom, {headers: this.authService.headers}).subscribe(() => {
       this.listClassrooms();
     });
   }
 
   deleteClassroom(id: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8080/admin/classroom/${id}`);
+    return this.http.delete<void>(`http://localhost:8080/admin/classroom/${id}`, {headers: this.authService.headers});
   }
 
   updateClassroom(updatedClassroom: ClassroomDto): void {
-    this.http.put<ClassroomDto>("http://localhost:8080/admin/classroom", updatedClassroom).subscribe(() => {
+    this.http.put<ClassroomDto>("http://localhost:8080/admin/classroom", updatedClassroom, {headers: this.authService.headers}).subscribe(() => {
       this.listClassrooms();
     });
   }
