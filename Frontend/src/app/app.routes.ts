@@ -9,6 +9,9 @@ import {ClassroomComponent} from "./classroomManagement/classroom/classroom.comp
 import {SceneContainerComponent} from "./sceneManagement/scene-container/scene-container.component";
 import {UserContainerComponent} from "./userManagement/user-container/user-container.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {SceneDisplayComponent} from "./sceneManagement/scene-display/scene-display.component";
+import {ScenePartDisplayComponent} from "./sceneManagement/scene-part-display/scene-part-display.component";
+import {SceneCommentDisplayComponent} from "./sceneManagement/scene-comment-display/scene-comment-display.component";
 
 export const routes: Routes = [
   {
@@ -63,9 +66,30 @@ export const routes: Routes = [
     component: TimeslotComponent,
   },
   {
-    path: 'forum',
+    path: 'forum_',
     title: '',
     component: SceneContainerComponent,
+  },
+  {
+    path: 'forum',
+    title: '',
+    component: SceneDisplayComponent,
+  },
+  {
+    path: 'forum/:sceneId',
+    title: '',
+    component: ScenePartDisplayComponent,
+  },
+  {
+    path: 'forum/:sceneId/:id',
+    title: '',
+    component: SceneCommentDisplayComponent,
+  },
+
+  {
+    path: 'chat',
+    title: '',
+    component: SceneDisplayComponent,
   },
 
 

@@ -705,7 +705,7 @@ public class AdminController {
     }
 
     @GetMapping("/scenePart/{id}")
-    public ScenePartDto getScenePart(@PathVariable Integer id) {
+    public List<ScenePartDto> getScenePart(@PathVariable Integer id) {
         return scenePartService.getScenePart(id);
     }
 
@@ -732,7 +732,7 @@ public class AdminController {
     }
 
     @GetMapping("/sceneComment/{id}")
-    public SceneCommentDto getSceneComment(@PathVariable Integer id) {
+    public List<SceneCommentDto> getSceneComment(@PathVariable Integer id) {
         return sceneCommentService.getSceneComment(id);
     }
 

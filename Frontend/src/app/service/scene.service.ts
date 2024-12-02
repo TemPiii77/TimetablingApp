@@ -21,6 +21,12 @@ export class SceneService {
     });
   }
 
+  listActiveScenes(): void {
+    this.http.get<SceneDto[]>("http://localhost:8080/activeScenes", {headers: this.authService.headers}).subscribe(resultData => {
+      this.scenesSubject.next(resultData);
+    });
+  }
+
   saveScene(newScene: SceneDto): void {
     this.http.post<SceneDto>("http://localhost:8080/admin/scene", newScene, {headers: this.authService.headers}).subscribe(() => {
       this.listScenes();

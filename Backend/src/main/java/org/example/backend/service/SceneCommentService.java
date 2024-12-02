@@ -4,6 +4,7 @@ import org.example.backend.domain.Grade;
 import org.example.backend.domain.SceneComment;
 import org.example.backend.dto.GradeDto;
 import org.example.backend.dto.SceneCommentDto;
+import org.example.backend.dto.ScenePartDto;
 import org.example.backend.repository.GradeRepository;
 import org.example.backend.repository.SceneCommentRepository;
 import org.modelmapper.ModelMapper;
@@ -33,8 +34,8 @@ public class SceneCommentService {
         return sceneCommentRepository.findAll().stream().map((e) -> modelMapper.map(e, SceneCommentDto.class)).toList();
     }
 
-    public SceneCommentDto getSceneComment(Integer id) {
-        return sceneCommentRepository.findById(id).map((e) -> modelMapper.map(e, SceneCommentDto.class)).orElse(null);
+    public List<SceneCommentDto> getSceneComment(Integer id) {
+        return sceneCommentRepository.findByScenePartIdOrderByDateRecordedDesc(id).stream().map((e) -> modelMapper.map(e, SceneCommentDto.class)).toList();
     }
 
     public void saveSceneComment(SceneCommentDto sceneCommentDto) {

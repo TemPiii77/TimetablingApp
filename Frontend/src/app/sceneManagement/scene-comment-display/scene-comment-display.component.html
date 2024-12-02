@@ -1,0 +1,18 @@
+<form [formGroup]="sceneCommentForm" (ngSubmit)="handleSubmit($event)" method="post">
+  <div class="container">
+    <input type="text" formControlName="content" id="content" required>
+    <button type="submit" name="save">Küldés</button>
+  </div>
+</form>
+
+
+@for (comment of sceneComments; track comment.id) {
+  <div class="comment-container">
+    <div class="comment-header">
+      <div class="comment-user">{{ comment.user.lastName + " " + comment.user.firstName }}</div>
+      <div class="comment-date">{{ getTimestampInMilliseconds(comment.dateRecorded) | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+    </div>
+    <p class="comment-content">{{ comment.content }}</p>
+  </div>
+}
+

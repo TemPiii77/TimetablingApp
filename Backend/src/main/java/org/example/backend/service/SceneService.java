@@ -8,12 +8,17 @@ import org.example.backend.repository.GradeRepository;
 import org.example.backend.repository.SceneRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.Year;
 import java.util.List;
 
 @Service
 public class SceneService {
+
+    @Value("${currentYear}")
+    private String year;
 
     private SceneRepository sceneRepository;
     private ModelMapper modelMapper;
@@ -51,4 +56,7 @@ public class SceneService {
         sceneRepository.deleteById(id);
     }
 
+    public List<SceneDto> getActiveScenes() {
+        return sceneRepository.findByNameContaining(year).stream().map((e) -> modelMapper.map(e, SceneDto.class)).toList();
+    }
 }

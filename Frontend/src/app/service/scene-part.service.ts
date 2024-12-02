@@ -21,6 +21,12 @@ export class ScenePartService {
     });
   }
 
+  listScenePart(id: Number): void {
+    this.http.get<ScenePartDto[]>(`http://localhost:8080/admin/scenePart/${id}`, {headers: this.authService.headers}).subscribe(resultData => {
+      this.scenePartsSubject.next(resultData);
+    });
+  }
+
   saveScenePart(newScenePart: ScenePartDto): void {
     this.http.post<ScenePartDto>("http://localhost:8080/admin/scenePart", newScenePart, {headers: this.authService.headers}).subscribe(() => {
       this.listSceneParts();

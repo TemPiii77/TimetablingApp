@@ -1,0 +1,10 @@
+<ul class="scene-list">
+  @for (scene of scenes; track scene.id) {
+    <li class="scene-item" (click)="navigateTo(scene.id)">
+      <span class="scene-title">{{scene.name}}</span>
+      <span class="scene-subject">{{scene.subject.name}}</span>
+    </li>
+  }
+</ul>
+
+

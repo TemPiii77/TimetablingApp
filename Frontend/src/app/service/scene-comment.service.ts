@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SceneCommentDto} from "../dto/scene-comment-dto";
 import {AuthService} from "./auth.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,14 @@ export class SceneCommentService {
     });
   }
 
+  listSceneComment(id: Number): void {
+    this.http.get<SceneCommentDto[]>(`http://localhost:8080/admin/sceneComment/${id}`, {headers: new HttpHeaders({'Authorization': localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : '' })}).subscribe(resultData => {
+      this.sceneCommentsSubject.next(resultData);
+    });
+  }
+
   saveSceneComment(newSceneComment: SceneCommentDto): void {
-    this.http.post<SceneCommentDto>("http://localhost:8080/admin/sceneComment", newSceneComment, {headers: this.authService.headers}).subscribe(() => {
+    this.http.post<SceneCommentDto>("http://localhost:8080/admin/sceneComment", newSceneComment, {headers: new HttpHeaders({'Authorization': localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : '' })}).subscribe(() => {
       this.listSceneComments();
     });
   }

@@ -33,8 +33,8 @@ public class ScenePartService {
         return scenePartRepository.findAll().stream().map((e) -> modelMapper.map(e, ScenePartDto.class)).toList();
     }
 
-    public ScenePartDto getScenePart(Integer id) {
-        return scenePartRepository.findById(id).map((e) -> modelMapper.map(e, ScenePartDto.class)).orElse(null);
+    public List<ScenePartDto> getScenePart(Integer id) {
+        return scenePartRepository.findBySceneId(id).stream().map((e) -> modelMapper.map(e, ScenePartDto.class)).toList();
     }
 
     public void saveScenePart(ScenePartDto scenePartDto) {

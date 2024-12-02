@@ -1,0 +1,20 @@
+<h1>{{scene?.name}}</h1>
+
+<ul class="scene-list">
+  <h2>Hirdetőtáblák</h2>
+  @for (scenePart of sceneParts; track scenePart.id) {
+    @if (scenePart.news){
+      <li class="scene-item" (click)="navigateTo(scenePart.id)">
+        <span class="scene-title">{{scenePart.name}}</span>
+      </li>
+    }
+  }
+  <h2>Fórumok</h2>
+  @for (scenePart of sceneParts; track scenePart.id) {
+    @if (!scenePart.news){
+      <li class="scene-item" (click)="navigateTo(scenePart.id)">
+        <span class="scene-title">{{scenePart.name}}</span>
+      </li>
+    }
+  }
+</ul>

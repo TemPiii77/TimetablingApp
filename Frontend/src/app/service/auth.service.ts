@@ -31,6 +31,7 @@ export class AuthService {
       )
       .subscribe((resultData) => {
         if (resultData) {
+          localStorage.setItem('token', resultData);
           this.cookieService.set('token', resultData);
           this.token = this.cookieService.get('token');
           console.log(this.token);

@@ -8,7 +8,7 @@
           <div class="column">
             <a routerLink="/user">Személy</a>
             <a routerLink="/class">Osztály</a>
-            <a routerLink="/forum">Fórum</a>
+            <a routerLink="/forum_">Fórum</a>
           </div>
           <div class="column">
             <a routerLink="/subject">Tantárgy</a>
@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
-    <a href="#home">Fórum</a>
-    <a href="#home">Chat</a>
+    <a routerLink="/forum">Fórum</a>
+    <a routerLink="/chat">Chat</a>
     <a id="logout" (click)="this.authService.logout()">Kijelentkezés</a>
     <a id="profile" routerLink="/profile">Profil</a>
   </div>
