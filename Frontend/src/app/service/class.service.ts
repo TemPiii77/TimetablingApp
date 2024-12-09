@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {ClassDto} from "../dto/class-dto";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
+import {UserDto} from "../dto/user-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class ClassService {
 
   listClasses(): void {
     this.http.get<ClassDto[]>("http://localhost:8080/admin/class", {headers: this.authService.headers}).subscribe(resultData => {
+      this.classesSubject.next(resultData);
+    });
+  }
+
+  listStudentsClasses(user: UserDto): void {
+    this.http.post<ClassDto[]>("http://localhost:8080/student/studentsClasses", user, {headers: this.authService.headers}).subscribe(resultData => {
       this.classesSubject.next(resultData);
     });
   }

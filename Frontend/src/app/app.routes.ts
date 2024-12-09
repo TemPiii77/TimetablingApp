@@ -12,6 +12,10 @@ import {ProfileComponent} from "./profile/profile.component";
 import {SceneDisplayComponent} from "./sceneManagement/scene-display/scene-display.component";
 import {ScenePartDisplayComponent} from "./sceneManagement/scene-part-display/scene-part-display.component";
 import {SceneCommentDisplayComponent} from "./sceneManagement/scene-comment-display/scene-comment-display.component";
+import {GradeComponent} from "./records/grade/grade.component";
+import {AbsenceComponent} from "./records/absence/absence.component";
+import {DelayComponent} from "./records/delay/delay.component";
+import {ProblemComponent} from "./records/problem/problem.component";
 
 export const routes: Routes = [
   {
@@ -64,6 +68,26 @@ export const routes: Routes = [
     path: 'timeslot',
     title: '',
     component: TimeslotComponent,
+  },
+  {
+    path: 'grades',
+    title: '',
+    component: GradeComponent,
+  },
+  {
+    path: 'absences',
+    title: '',
+    component: AbsenceComponent,
+  },
+  {
+    path: 'delays',
+    title: '',
+    component: DelayComponent,
+  },
+  {
+    path: 'problems',
+    title: '',
+    component: ProblemComponent,
   },
   {
     path: 'forum_',

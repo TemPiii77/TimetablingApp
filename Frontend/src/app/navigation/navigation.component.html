@@ -1,30 +1,46 @@
 @if (authService.isAuthenticated()) {
-  <div class="navbar">
-    <a routerLink="/home">Főoldal</a>
-    <div class="dropdown">
-      <button class="dropbtn">Erőforrások kezelése</button>
-      <div class="dropdown-content">
-        <div class="row">
-          <div class="column">
-            <a routerLink="/user">Személy</a>
-            <a routerLink="/class">Osztály</a>
-            <a routerLink="/forum_">Fórum</a>
-          </div>
-          <div class="column">
-            <a routerLink="/subject">Tantárgy</a>
-            <a routerLink="/preferredTime">Preferált idő</a>
-          </div>
-          <div class="column">
-            <a routerLink="/classroom">Terem</a>
-            <a routerLink="/timeslot">Órarend</a>
+  <div *ngIf="this.authService.currentUser | async as user">
+    <div class="navbar">
+
+      <a routerLink="/home">Főoldal</a>
+
+      <ng-container *ngIf="user.role === 'ROLE_ADMIN'">
+        <div class="dropdown">
+          <button class="dropbtn">Erőforrások kezelése</button>
+          <div class="dropdown-content">
+            <div class="row">
+              <div class="column">
+                <a routerLink="/user">Személy</a>
+                <a routerLink="/class">Osztály</a>
+                <a routerLink="/forum_">Fórum</a>
+              </div>
+              <div class="column">
+                <a routerLink="/subject">Tantárgy</a>
+                <a routerLink="/preferredTime">Preferált idő</a>
+              </div>
+              <div class="column">
+                <a routerLink="/classroom">Terem</a>
+                <a routerLink="/timeslot">Órarend</a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
+
+      <ng-container *ngIf="user.role === 'ROLE_STUDENT'">
+          <a routerLink="/grades">Jegyek</a>
+          <a routerLink="/absences">Hiányzások</a>
+          <a routerLink="/delays">Késések</a>
+          <a routerLink="/problems">Beírások</a>
+      </ng-container>
+
+      <a routerLink="/forum">Fórum</a>
+      <a routerLink="/chat">Chat</a>
+
+      <a id="logout" (click)="this.authService.logout()">Kijelentkezés</a>
+      <a id="profile" routerLink="/profile">Profil</a>
+
     </div>
-    <a routerLink="/forum">Fórum</a>
-    <a routerLink="/chat">Chat</a>
-    <a id="logout" (click)="this.authService.logout()">Kijelentkezés</a>
-    <a id="profile" routerLink="/profile">Profil</a>
   </div>
 }
 

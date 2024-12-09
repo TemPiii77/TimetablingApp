@@ -1,0 +1,31 @@
+<h1>Hiányzások</h1>
+<div class="container">
+  <select id="classes" (change)="handleSubmit($event)">
+    <option *ngFor="let classDto of classes;" [value]="classDto.year">
+      {{ classDto.year + " " + classDto.grade + "." + classDto.group }}
+    </option>
+  </select>
+</div>
+
+<table>
+  <tr>
+    <td>Tartalom</td>
+    <td>Dátum</td>
+    <td>Oktató</td>
+    <td>Tárgy</td>
+    <td>Nap</td>
+    <td>Óra</td>
+  </tr>
+  @for (absence of absences; track absence.id) {
+    <tr>
+      <td>{{absence.comment}}</td>
+      <td>{{getTimestampInMilliseconds(absence.dateRecorded) | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+      <td>{{absence.timeslot.teacher.user.lastName + " " + absence.timeslot.teacher.user.firstName}}</td>
+      <td>{{absence.timeslot.subject.name}}</td>
+      <td>{{absence.timeslot.day}}</td>
+      <td>{{absence.timeslot.hour}}</td>
+    </tr>
+  }
+</table>
+
+

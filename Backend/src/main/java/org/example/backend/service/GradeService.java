@@ -4,6 +4,7 @@ import org.example.backend.domain.Classroom;
 import org.example.backend.domain.Grade;
 import org.example.backend.dto.ClassroomDto;
 import org.example.backend.dto.GradeDto;
+import org.example.backend.dto.SceneDto;
 import org.example.backend.repository.ClassroomRepository;
 import org.example.backend.repository.GradeRepository;
 import org.modelmapper.ModelMapper;

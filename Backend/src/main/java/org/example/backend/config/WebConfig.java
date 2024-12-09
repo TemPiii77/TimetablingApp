@@ -44,8 +44,9 @@ public class WebConfig implements WebMvcConfigurer {
         return http.csrf(AbstractHttpConfigurer::disable).
                 authorizeHttpRequests(request -> request
                         .requestMatchers("admin/**").hasRole("ADMIN")
+                        .requestMatchers("student/**").hasRole("STUDENT")
                         .requestMatchers("activeScenes").hasAnyRole("USER", "ADMIN","TEACHER")
-                        .requestMatchers("userInformation").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("userInformation").hasAnyRole("USER", "ADMIN", "TEACHER", "STUDENT")
                         .requestMatchers("login").permitAll()
                         .anyRequest().authenticated()).
                 httpBasic(Customizer.withDefaults()).

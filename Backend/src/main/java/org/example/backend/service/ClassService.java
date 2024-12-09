@@ -2,8 +2,10 @@ package org.example.backend.service;
 
 import org.example.backend.domain.Class;
 import org.example.backend.domain.Classroom;
+import org.example.backend.domain.User;
 import org.example.backend.dto.ClassDto;
 import org.example.backend.dto.ClassroomDto;
+import org.example.backend.dto.UserDto;
 import org.example.backend.repository.ClassRepository;
 import org.example.backend.repository.ClassroomRepository;
 import org.modelmapper.ModelMapper;
@@ -49,5 +51,10 @@ public class ClassService {
 
     public void deleteClass(Integer id) {
         classRepository.deleteById(id);
+    }
+
+    public List<ClassDto> getStudentsClasses(UserDto userDto) {
+        User user = modelMapper.map(userDto, User.class);
+        return classRepository.findClassesByStudentId(user.getId()).stream().map((e) -> modelMapper.map(e, ClassDto.class)).toList();
     }
 }
