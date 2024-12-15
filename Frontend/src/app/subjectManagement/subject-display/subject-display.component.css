@@ -1,0 +1,20 @@
+.container {
+  text-align: center;
+  width: 30%;
+  margin: auto;
+}
+
+option {
+  text-align: center;
+}
+
+.subject {
+  width: 200px;
+  height: 75px;
+  background-color: lightgray;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

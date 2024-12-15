@@ -1,0 +1,12 @@
+<h1>Tárgyak</h1>
+<div class="container">
+  <select id="classes" (change)="handleSubmit($event)">
+    <option *ngFor="let classDto of classes; let i = index" [value]="classDto.id" [selected]="i === 0">
+      {{ classDto.year + " " + classDto.grade + "." + classDto.group }}
+    </option>
+  </select>
+</div>
+
+@for (subject of subjects; track subject.id) {
+    <div class="subject" (click)="navigateTo(subject.id)">{{subject.name}}</div>
+  }

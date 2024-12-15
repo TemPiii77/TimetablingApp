@@ -2,15 +2,17 @@ package org.example.backend.service;
 
 import org.example.backend.domain.Classroom;
 import org.example.backend.domain.Grade;
-import org.example.backend.dto.ClassroomDto;
-import org.example.backend.dto.GradeDto;
-import org.example.backend.dto.SceneDto;
+import org.example.backend.dto.*;
 import org.example.backend.repository.ClassroomRepository;
 import org.example.backend.repository.GradeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -52,4 +54,7 @@ public class GradeService {
         gradeRepository.deleteById(id);
     }
 
+    public List<GradeDto> getStudentsGrades(UserDto userDto, Integer classId, Integer subjectId) {
+        return gradeRepository.findGradesByClassAndSubjectId(userDto.getId(), classId, subjectId).stream().map((e) -> modelMapper.map(e, GradeDto.class)).toList();
+    }
 }

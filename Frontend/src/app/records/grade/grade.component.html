@@ -1,0 +1,26 @@
+<div *ngIf="grades?.[0]?.timeslot?.subject?.name !== undefined" class="container">
+  <div class="left">{{ grades[0].timeslot.subject.name }}</div>
+  <div class="right">{{mean}}</div>
+</div>
+
+<table>
+  <tr>
+    <td>Típus</td>
+    <td>Érték</td>
+    <td>Dátum</td>
+    <td>Oktató</td>
+    <td>Nap</td>
+    <td>Óra</td>
+  </tr>
+  @for (grade of grades; track grade.id) {
+    <tr>
+      <td>{{grade.type}}</td>
+      <td>{{grade.value}}</td>
+      <td>{{getTimestampInMilliseconds(grade.dateRecorded) | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+      <td>{{grade.timeslot.teacher.user.lastName + " " + grade.timeslot.teacher.user.firstName}}</td>
+      <td>{{grade.timeslot.day}}</td>
+      <td>{{grade.timeslot.hour}}</td>
+    </tr>
+  }
+</table>
+

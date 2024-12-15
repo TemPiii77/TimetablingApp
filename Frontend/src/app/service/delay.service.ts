@@ -3,6 +3,8 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {DelayDto} from "../dto/delay-dto";
 import {AuthService} from "./auth.service";
+import {UserDto} from "../dto/user-dto";
+import {AbsenceDto} from "../dto/absence-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,12 @@ export class DelayService {
 
   listDelays(): void {
     this.http.get<DelayDto[]>("http://localhost:8080/admin/delay", {headers: this.authService.headers}).subscribe(resultData => {
+      this.delaysSubject.next(resultData);
+    });
+  }
+
+  listStudentsDelays(user: UserDto, year: number): void {
+    this.http.post<DelayDto[]>(`http://localhost:8080/student/studentsDelays/${year}`, user,  {headers: this.authService.headers}).subscribe(resultData => {
       this.delaysSubject.next(resultData);
     });
   }

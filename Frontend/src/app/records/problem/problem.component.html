@@ -1,1 +1,33 @@
-<p>problem works!</p>
+<h1>Beírások</h1>
+<div class="container">
+  <select id="classes" (change)="handleSubmit($event)">
+    <option *ngFor="let classDto of classes;" [value]="classDto.year">
+      {{ classDto.year + " " + classDto.grade + "." + classDto.group }}
+    </option>
+  </select>
+</div>
+
+<table>
+  <tr>
+    <td>Beírás típusa</td>
+    <td>Tartalom</td>
+    <td>Dátum</td>
+    <td>Oktató</td>
+    <td>Tárgy</td>
+    <td>Nap</td>
+    <td>Óra</td>
+  </tr>
+  @for (problem of problems; track problem.id) {
+    <tr>
+      <td>{{problem.type}}</td>
+      <td>{{problem.comment}}</td>
+      <td>{{getTimestampInMilliseconds(problem.dateRecorded) | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+      <td>{{problem.timeslot.teacher.user.lastName + " " + problem.timeslot.teacher.user.firstName}}</td>
+      <td>{{problem.timeslot.subject.name}}</td>
+      <td>{{problem.timeslot.day}}</td>
+      <td>{{problem.timeslot.hour}}</td>
+    </tr>
+  }
+</table>
+
+

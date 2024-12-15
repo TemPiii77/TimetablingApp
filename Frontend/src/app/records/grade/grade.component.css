@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin: 25px auto;
+  background-color: lightblue;
+  font-size: 20px
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  text-align: right;
+}

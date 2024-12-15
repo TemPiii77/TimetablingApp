@@ -3,6 +3,8 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {SubjectDto} from "../dto/subject-dto";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "./auth.service";
+import {UserDto} from "../dto/user-dto";
+import {AbsenceDto} from "../dto/absence-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,11 @@ export class SubjectService {
     });
   }
 
+  listStudentsSubjects(classId: number): void {
+    this.http.post<SubjectDto[]>("http://localhost:8080/student/studentsSubjects", classId,  {headers: this.authService.headers}).subscribe(resultData => {
+      this.subjectsSubject.next(resultData);
+    });
+  }
 
   saveSubject(newSubject: SubjectDto): void {
     this.http.post<SubjectDto>("http://localhost:8080/admin/subject", newSubject, {headers: this.authService.headers}).subscribe(() => {

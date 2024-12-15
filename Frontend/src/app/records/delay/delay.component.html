@@ -1,1 +1,33 @@
-<p>delay works!</p>
+<h1>Késések</h1>
+<div class="container">
+  <select id="classes" (change)="handleSubmit($event)">
+    <option *ngFor="let classDto of classes;" [value]="classDto.year">
+      {{ classDto.year + " " + classDto.grade + "." + classDto.group }}
+    </option>
+  </select>
+</div>
+
+<table>
+  <tr>
+    <td>Késés időtartama</td>
+    <td>Tartalom</td>
+    <td>Dátum</td>
+    <td>Oktató</td>
+    <td>Tárgy</td>
+    <td>Nap</td>
+    <td>Óra</td>
+  </tr>
+  @for (delay of delays; track delay.id) {
+    <tr>
+      <td>{{delay.value}}</td>
+      <td>{{delay.comment}}</td>
+      <td>{{getTimestampInMilliseconds(delay.dateRecorded) | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+      <td>{{delay.timeslot.teacher.user.lastName + " " + delay.timeslot.teacher.user.firstName}}</td>
+      <td>{{delay.timeslot.subject.name}}</td>
+      <td>{{delay.timeslot.day}}</td>
+      <td>{{delay.timeslot.hour}}</td>
+    </tr>
+  }
+</table>
+
+

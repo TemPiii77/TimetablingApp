@@ -2,14 +2,20 @@ package org.example.backend.service;
 
 import org.example.backend.domain.Classroom;
 import org.example.backend.domain.Subject;
+import org.example.backend.dto.AbsenceDto;
 import org.example.backend.dto.ClassroomDto;
 import org.example.backend.dto.SubjectDto;
+import org.example.backend.dto.UserDto;
 import org.example.backend.repository.ClassroomRepository;
 import org.example.backend.repository.SubjectRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -51,6 +57,8 @@ public class SubjectService {
         subjectRepository.deleteById(id);
     }
 
-
+    public List<SubjectDto> getStudentsSubjects(Integer classId) {
+        return subjectRepository.findSubjectsByClassId(classId).stream().map((e) -> modelMapper.map(e, SubjectDto.class)).toList();
+    }
 
 }

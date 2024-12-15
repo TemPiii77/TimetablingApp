@@ -16,6 +16,7 @@ import {GradeComponent} from "./records/grade/grade.component";
 import {AbsenceComponent} from "./records/absence/absence.component";
 import {DelayComponent} from "./records/delay/delay.component";
 import {ProblemComponent} from "./records/problem/problem.component";
+import {SubjectDisplayComponent} from "./subjectManagement/subject-display/subject-display.component";
 
 export const routes: Routes = [
   {
@@ -70,7 +71,12 @@ export const routes: Routes = [
     component: TimeslotComponent,
   },
   {
-    path: 'grades',
+    path: 'subjects',
+    title: '',
+    component: SubjectDisplayComponent,
+  },
+  {
+    path: 'subjects/:selectedClassId/:subjectId',
     title: '',
     component: GradeComponent,
   },
