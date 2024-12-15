@@ -2,14 +2,8 @@ package org.example.backend.controller;
 
 import org.example.backend.domain.Scene;
 import org.example.backend.domain.User;
-import org.example.backend.dto.ClassDto;
-import org.example.backend.dto.ProblemDto;
-import org.example.backend.dto.SceneDto;
-import org.example.backend.dto.UserDto;
-import org.example.backend.service.ClassService;
-import org.example.backend.service.JWTService;
-import org.example.backend.service.SceneService;
-import org.example.backend.service.UserService;
+import org.example.backend.dto.*;
+import org.example.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +15,8 @@ public class UserController {
     private UserService userService;
     private SceneService sceneService;
     private ClassService classService;
+    private ChatService chatService;
+    private ChatCommentService chatCommentService;
 
 
     @Autowired
@@ -36,6 +32,16 @@ public class UserController {
     @Autowired
     public void setClassService(ClassService classService) {
         this.classService = classService;
+    }
+
+    @Autowired
+    public void setChatService(ChatService chatService) {
+        this.chatService = chatService;
+    }
+
+    @Autowired
+    public void setChatCommentService(ChatCommentService chatCommentService) {
+        this.chatCommentService = chatCommentService;
     }
 
 //    @PostMapping("/register")
@@ -62,6 +68,16 @@ public class UserController {
     @PostMapping("/usersScenes/{year}")
     public List<SceneDto> getUsersScenes(@PathVariable Integer year, @RequestBody UserDto userDto) {
         return sceneService.getUsersScenes(userDto, year);
+    }
+
+    @PostMapping("/usersChats")
+    public List<ChatDto> getUsersChats(@RequestBody UserDto userDto) {
+        return chatService.getUsersChats(userDto);
+    }
+
+    @PostMapping("/usersChatComments/{chatId}")
+    public List<ChatCommentDto> getUsersChatComments(@PathVariable Integer chatId) {
+        return chatCommentService.getUsersChatComments(chatId);
     }
 
 

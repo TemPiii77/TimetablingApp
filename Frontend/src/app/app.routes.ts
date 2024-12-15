@@ -18,6 +18,7 @@ import {DelayComponent} from "./records/delay/delay.component";
 import {ProblemComponent} from "./records/problem/problem.component";
 import {SubjectDisplayComponent} from "./subjectManagement/subject-display/subject-display.component";
 import {TimetableComponent} from "./timeslotManagement/timetable/timetable.component";
+import {ChatComponent} from "./chat/chat.component";
 
 export const routes: Routes = [
   {
@@ -125,7 +126,7 @@ export const routes: Routes = [
   {
     path: 'chat',
     title: '',
-    component: SceneDisplayComponent,
+    component: ChatComponent,
   },
 
 

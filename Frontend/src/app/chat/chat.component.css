@@ -1,0 +1,63 @@
+.grid-container {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(50, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+}
+
+.area-1 {
+  grid-column: 1 / span 10;
+  grid-row: 1;
+  background: lightblue;
+}
+
+.area-2 {
+  grid-column: 11 / span 40;
+  grid-row: 1;
+  background: lightgreen;
+}
+
+.area-3 {
+  grid-column: 1 / span 10;
+  grid-row: 2;
+  background: lightcoral;
+}
+
+.area-4 {
+  grid-column: 1 / span 10;
+  grid-row: 3 / span 7;
+  background: lightgoldenrodyellow;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.area-5 {
+  grid-column: 11 / span 40;
+  grid-row: 2 / span 8;
+  background: lightgray;
+}
+
+.chat-list {
+  display: flex;
+  flex-direction: column; /* Függőleges lista */
+  gap: 10px;             /* Hézag az elemek között */
+  padding: 10px;         /* Lista belső margója */
+  background-color: #f9f9f9; /* Világos háttér */
+  border-radius: 8px;    /* Lekerekített lista szél */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Finom árnyék */
+}
+
+.chat-item {
+  padding: 10px 15px; /* Belső margók */
+  background-color: white; /* Fehér háttér */
+  border-radius: 5px; /* Lekerekített szélek */
+  cursor: pointer; /* Mutatóváltás hoverkor */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Simított animáció */
+}
+
+.chat-item:hover {
+  background-color: #e0f7fa; /* Világoskék háttér hoverkor */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Árnyék hoverkor */
+  transform: translateY(-2px); /* Minimális emelkedés hoverkor */
+}

@@ -3,7 +3,9 @@ package org.example.backend.service;
 import org.example.backend.domain.ChatComment;
 import org.example.backend.domain.Grade;
 import org.example.backend.dto.ChatCommentDto;
+import org.example.backend.dto.ChatDto;
 import org.example.backend.dto.GradeDto;
+import org.example.backend.dto.UserDto;
 import org.example.backend.repository.ChatCommentRepository;
 import org.example.backend.repository.GradeRepository;
 import org.modelmapper.ModelMapper;
@@ -49,6 +51,10 @@ public class ChatCommentService {
 
     public void deleteChatComment(Integer id) {
         chatCommentRepository.deleteById(id);
+    }
+
+    public List<ChatCommentDto> getUsersChatComments(Integer chatId) {
+        return chatCommentRepository.findUsersChatComments(chatId).stream().map((e) -> modelMapper.map(e, ChatCommentDto.class)).toList();
     }
 
 }

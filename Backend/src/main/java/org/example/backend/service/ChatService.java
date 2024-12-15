@@ -2,8 +2,8 @@ package org.example.backend.service;
 
 import org.example.backend.domain.Chat;
 import org.example.backend.domain.Classroom;
-import org.example.backend.dto.ChatDto;
-import org.example.backend.dto.ClassroomDto;
+import org.example.backend.domain.User;
+import org.example.backend.dto.*;
 import org.example.backend.repository.ChatRepository;
 import org.example.backend.repository.ClassroomRepository;
 import org.modelmapper.ModelMapper;
@@ -49,5 +49,9 @@ public class ChatService {
 
     public void deleteChat(Integer id) {
         chatRepository.deleteById(id);
+    }
+
+    public List<ChatDto> getUsersChats(UserDto userDto) {
+        return chatRepository.findUsersChats(userDto.getId()).stream().map((e) -> modelMapper.map(e, ChatDto.class)).toList();
     }
 }

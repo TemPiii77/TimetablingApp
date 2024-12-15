@@ -1,0 +1,15 @@
+<div class="grid-container">
+  <div class="area-1">add</div>
+  <div class="area-2">name + add</div>
+  <div class="area-3">searchbar</div>
+  <div class="area-4 chat-list">
+    @for (chat of chats; track chat.id) {
+      <div class="chat-item" (click)="handleSubmit(chat.id)">{{chat.name}}</div>
+    }
+  </div>
+  <div class="area-5">
+    @for (comment of chatComments; track comment.id) {
+      <div>{{comment.content}}</div>
+    }
+  </div>
+</div>

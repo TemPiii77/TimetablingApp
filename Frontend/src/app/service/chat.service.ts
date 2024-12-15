@@ -3,6 +3,8 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {ChatDto} from "../dto/chat-dto";
 import {AuthService} from "./auth.service";
+import {UserDto} from "../dto/user-dto";
+import {AbsenceDto} from "../dto/absence-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,12 @@ export class ChatService {
 
   listChats(): void {
     this.http.get<ChatDto[]>("http://localhost:8080/admin/chat", {headers: this.authService.headers}).subscribe(resultData => {
+      this.chatsSubject.next(resultData);
+    });
+  }
+
+  listUsersChats(user: UserDto): void {
+    this.http.post<ChatDto[]>(`http://localhost:8080/usersChats`, user,  {headers: this.authService.headers}).subscribe(resultData => {
       this.chatsSubject.next(resultData);
     });
   }

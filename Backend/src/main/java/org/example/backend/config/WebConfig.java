@@ -45,6 +45,8 @@ public class WebConfig implements WebMvcConfigurer {
                 authorizeHttpRequests(request -> request
                         .requestMatchers("admin/**").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
                         .requestMatchers("usersClasses").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
+                        .requestMatchers("usersChats").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
+                        .requestMatchers("usersChatComments/{chatId}").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
                         .requestMatchers("student/**").hasRole("STUDENT")
                         .requestMatchers("/usersScenes/{year}").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
                         .requestMatchers("userInformation").hasAnyRole("USER", "ADMIN", "TEACHER", "STUDENT")
