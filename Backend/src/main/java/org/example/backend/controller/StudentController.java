@@ -56,10 +56,6 @@ public class StudentController {
         this.timeslotService = timeslotService;
     }
 
-    @PostMapping("/studentsClasses")
-    public List<ClassDto> getStudentsClasses(@RequestBody UserDto userDto) {
-        return classService.getStudentsClasses(userDto);
-    }
 
     @PostMapping("/studentsSubjects")
     public List<SubjectDto> getStudentsSubjects(@RequestBody Integer classId) {

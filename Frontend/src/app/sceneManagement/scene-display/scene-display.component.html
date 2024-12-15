@@ -1,3 +1,12 @@
+<h1>Fórumok</h1>
+<div class="container">
+  <select id="classes" (change)="handleSubmit($event)">
+    <option *ngFor="let classDto of classes;" [value]="classDto.year">
+      {{ classDto.year + " " + classDto.grade + "." + classDto.group }}
+    </option>
+  </select>
+</div>
+
 <ul class="scene-list">
   @for (scene of scenes; track scene.id) {
     <li class="scene-item" (click)="navigateTo(scene.id)">

@@ -1,3 +1,13 @@
+.container {
+  text-align: center;
+  width: 30%;
+  margin: auto;
+}
+
+option {
+  text-align: center;
+}
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;

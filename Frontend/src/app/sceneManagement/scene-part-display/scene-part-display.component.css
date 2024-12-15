@@ -1,0 +1,52 @@
+.container {
+  text-align: center;
+  width: 30%;
+  margin: auto;
+}
+
+option {
+  text-align: center;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 20px;
+}
+
+.scene-list {
+  list-style-type: none;
+  padding: 50px;
+  margin: auto;
+  width: 600px;
+}
+
+.scene-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f1f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.scene-item:hover {
+  background-color: #c8c8c8;
+}
+
+.scene-title {
+  font-size: 20px;
+  color: #333;
+  flex-grow: 1;
+}
+
+.scene-subject {
+  font-size: 16px;
+  color: #888;
+  font-weight: bold;
+  text-align: right;
+  white-space: nowrap;
+}

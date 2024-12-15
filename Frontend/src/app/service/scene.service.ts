@@ -3,6 +3,8 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {SceneDto} from "../dto/scene-dto";
 import {AuthService} from "./auth.service";
+import {UserDto} from "../dto/user-dto";
+import {AbsenceDto} from "../dto/absence-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,8 @@ export class SceneService {
     });
   }
 
-  listActiveScenes(): void {
-    this.http.get<SceneDto[]>("http://localhost:8080/activeScenes", {headers: this.authService.headers}).subscribe(resultData => {
+  listUsersScenes(user: UserDto, year: number): void {
+    this.http.post<SceneDto[]>(`http://localhost:8080/usersScenes/${year}`, user,  {headers: this.authService.headers}).subscribe(resultData => {
       this.scenesSubject.next(resultData);
     });
   }

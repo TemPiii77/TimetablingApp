@@ -2,16 +2,16 @@ package org.example.backend.controller;
 
 import org.example.backend.domain.Scene;
 import org.example.backend.domain.User;
+import org.example.backend.dto.ClassDto;
+import org.example.backend.dto.ProblemDto;
 import org.example.backend.dto.SceneDto;
 import org.example.backend.dto.UserDto;
+import org.example.backend.service.ClassService;
 import org.example.backend.service.JWTService;
 import org.example.backend.service.SceneService;
 import org.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +20,8 @@ public class UserController {
 
     private UserService userService;
     private SceneService sceneService;
+    private ClassService classService;
+
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -29,6 +31,11 @@ public class UserController {
     @Autowired
     public void setSceneService(SceneService sceneService) {
         this.sceneService = sceneService;
+    }
+
+    @Autowired
+    public void setClassService(ClassService classService) {
+        this.classService = classService;
     }
 
 //    @PostMapping("/register")
@@ -47,8 +54,16 @@ public class UserController {
         return userService.getName(token);
     }
 
-    @GetMapping("/activeScenes")
-    public List<SceneDto> getActiveScenes() {return sceneService.getActiveScenes();}
+    @PostMapping("/usersClasses")
+    public List<ClassDto> getUsersClasses(@RequestBody UserDto userDto) {
+        return classService.getUsersClasses(userDto);
+    }
+
+    @PostMapping("/usersScenes/{year}")
+    public List<SceneDto> getUsersScenes(@PathVariable Integer year, @RequestBody UserDto userDto) {
+        return sceneService.getUsersScenes(userDto, year);
+    }
+
 
 
 }

@@ -5,6 +5,7 @@ import org.example.backend.domain.Classroom;
 import org.example.backend.domain.User;
 import org.example.backend.dto.ClassDto;
 import org.example.backend.dto.ClassroomDto;
+import org.example.backend.dto.SceneDto;
 import org.example.backend.dto.UserDto;
 import org.example.backend.repository.ClassRepository;
 import org.example.backend.repository.ClassroomRepository;
@@ -53,8 +54,13 @@ public class ClassService {
         classRepository.deleteById(id);
     }
 
-    public List<ClassDto> getStudentsClasses(UserDto userDto) {
+    public List<ClassDto> getUsersClasses(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
-        return classRepository.findClassesByStudentId(user.getId()).stream().map((e) -> modelMapper.map(e, ClassDto.class)).toList();
+
+        return switch (userDto.getRole()) {
+            case "ROLE_STUDENT" -> classRepository.findClassesByStudentId(user.getId()).stream().map((e) -> modelMapper.map(e, ClassDto.class)).toList();
+            case "ROLE_TEACHER" -> classRepository.findClassesByTeacherId(user.getId()).stream().map((e) -> modelMapper.map(e, ClassDto.class)).toList();
+            default -> getClasses();
+        };
     }
 }

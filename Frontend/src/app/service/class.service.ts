@@ -23,7 +23,7 @@ export class ClassService {
   }
 
   listStudentsClasses(user: UserDto): void {
-    this.http.post<ClassDto[]>("http://localhost:8080/student/studentsClasses", user, {headers: this.authService.headers}).subscribe(resultData => {
+    this.http.post<ClassDto[]>("http://localhost:8080/usersClasses", user, {headers: this.authService.headers}).subscribe(resultData => {
       this.classesSubject.next(resultData);
     });
   }

@@ -43,9 +43,10 @@ public class WebConfig implements WebMvcConfigurer {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable).
                 authorizeHttpRequests(request -> request
-                        .requestMatchers("admin/**").hasRole("ADMIN")
+                        .requestMatchers("admin/**").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
+                        .requestMatchers("usersClasses").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
                         .requestMatchers("student/**").hasRole("STUDENT")
-                        .requestMatchers("activeScenes").hasAnyRole("USER", "ADMIN","TEACHER")
+                        .requestMatchers("/usersScenes/{year}").hasAnyRole("USER", "ADMIN","TEACHER", "STUDENT")
                         .requestMatchers("userInformation").hasAnyRole("USER", "ADMIN", "TEACHER", "STUDENT")
                         .requestMatchers("login").permitAll()
                         .anyRequest().authenticated()).
