@@ -2,14 +2,20 @@ package org.example.backend.service;
 
 import org.example.backend.domain.Classroom;
 import org.example.backend.domain.Timeslot;
+import org.example.backend.dto.AbsenceDto;
 import org.example.backend.dto.ClassroomDto;
 import org.example.backend.dto.TimeslotDto;
+import org.example.backend.dto.UserDto;
 import org.example.backend.repository.ClassroomRepository;
 import org.example.backend.repository.TimeslotRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -49,5 +55,9 @@ public class TimeslotService {
 
     public void deleteTimeslot(Integer id) {
         timeslotRepository.deleteById(id);
+    }
+
+    public List<TimeslotDto> getStudentsTimeslots(UserDto userDto, Integer year) {
+        return timeslotRepository.findTimeslotsByYear(userDto.getId(), year).stream().map((e) -> modelMapper.map(e, TimeslotDto.class)).toList();
     }
 }

@@ -1,0 +1,28 @@
+<h1>Órarendek</h1>
+<div class="container">
+  <select id="classes" (change)="handleSubmit($event)">
+    <option *ngFor="let classDto of classes;" [value]="classDto.year">
+      {{ classDto.year + " " + classDto.grade + "." + classDto.group }}
+    </option>
+  </select>
+</div>
+
+<table class="timetable">
+  <thead>
+  <tr>
+    <th>Időpont</th>
+    <th>Hétfő</th>
+    <th>Kedd</th>
+    <th>Szerda</th>
+    <th>Csütörtök</th>
+    <th>Péntek</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let hour of hours">
+    <td>{{ hour+7}}:00 - {{ hour+7}}:45</td>
+    <td *ngFor="let day of daysOrder" [innerHTML]="getSubjectForDayAndHour(day, hour)"></td>
+  </tr>
+  </tbody>
+</table>
+

@@ -18,6 +18,7 @@ public class StudentController {
     private ProblemService problemService;
     private GradeService gradeService;
     private SubjectService subjectService;
+    private TimeslotService timeslotService;
 
 
     @Autowired
@@ -50,6 +51,11 @@ public class StudentController {
         this.subjectService = subjectService;
     }
 
+    @Autowired
+    public void setTimeslotService(TimeslotService timeslotService) {
+        this.timeslotService = timeslotService;
+    }
+
     @PostMapping("/studentsClasses")
     public List<ClassDto> getStudentsClasses(@RequestBody UserDto userDto) {
         return classService.getStudentsClasses(userDto);
@@ -78,6 +84,11 @@ public class StudentController {
     @PostMapping("/studentsGrades/{classId}/{subjectId}")
     public List<GradeDto> getStudentsGrades(@PathVariable Integer classId, @PathVariable Integer subjectId, @RequestBody UserDto userDto) {
         return gradeService.getStudentsGrades(userDto, classId, subjectId);
+    }
+
+    @PostMapping("/studentsTimeslots/{year}")
+    public List<TimeslotDto> getStudentsTimeslots(@PathVariable Integer year, @RequestBody UserDto userDto) {
+        return timeslotService.getStudentsTimeslots(userDto, year);
     }
 
 

@@ -17,6 +17,7 @@ import {AbsenceComponent} from "./records/absence/absence.component";
 import {DelayComponent} from "./records/delay/delay.component";
 import {ProblemComponent} from "./records/problem/problem.component";
 import {SubjectDisplayComponent} from "./subjectManagement/subject-display/subject-display.component";
+import {TimetableComponent} from "./timeslotManagement/timetable/timetable.component";
 
 export const routes: Routes = [
   {
@@ -94,6 +95,11 @@ export const routes: Routes = [
     path: 'problems',
     title: '',
     component: ProblemComponent,
+  },
+  {
+    path: 'timetable',
+    title: '',
+    component: TimetableComponent,
   },
   {
     path: 'forum_',

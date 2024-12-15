@@ -1,0 +1,61 @@
+.container {
+  text-align: center;
+  width: 30%;
+  margin: auto;
+}
+
+option {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+input[type=text], input[type=password], input[type="number"] ,select, option {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+thead th td {
+  background-color: #f3f3f3;
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+tbody td {
+  padding: 15px;
+}
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+  font-size: 1em;
+  font-family: 'Arial', sans-serif;
+  text-align: left;
+  margin: 0 auto;
+}
+
+table, table td {
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+}
+
+table tr:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
