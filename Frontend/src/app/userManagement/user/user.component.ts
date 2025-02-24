@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {UserDto} from "../../dto/user-dto";
 import {UserService} from "../../service/user.service";
@@ -6,21 +6,56 @@ import {ClassDto} from "../../dto/class-dto";
 import {ClassService} from "../../service/class.service";
 import {StudentClassService} from "../../service/student-class.service";
 import {StudentClassIdDto} from "../../dto/student-class-id-dto";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatOption} from "@angular/material/core";
+import {MatSelect} from "@angular/material/select";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableDataSource} from "@angular/material/table";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-user',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    MatButton,
+    MatOption,
+    MatSelect,
+    MatPaginator,
+    MatTable,
+    MatIcon,
+    MatIconButton,
+    MatHeaderCell,
+    MatCell,
+    MatHeaderRow,
+    MatRow,
+    MatColumnDef,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatHeaderRowDef,
+    MatRowDef
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
-export class UserComponent implements OnInit{
+export class UserComponent implements OnInit, AfterViewInit{
 
   users: UserDto[] = [];
   defaultUser: UserDto | undefined;
   classes: ClassDto[] = [];
+  dataSource = new MatTableDataSource(this.users);
+  displayedColumns: string[] = ['id', 'email', 'lastName', 'firstName', 'password', 'role', 'actions'];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   userForm = new FormGroup({
     id: new FormControl(''),
@@ -43,6 +78,9 @@ export class UserComponent implements OnInit{
 
     this.userService.users$.subscribe(resultData => {
       this.users = resultData;
+      this.dataSource = new MatTableDataSource(this.users);
+      this.dataSource.paginator = this.paginator;
+
     });
 
     this.classService.classes$.subscribe(resultData => {

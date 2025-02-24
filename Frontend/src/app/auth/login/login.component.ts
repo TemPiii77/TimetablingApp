@@ -1,13 +1,28 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "../../service/auth.service";
 import {UserDto} from "../../dto/user-dto";
+import {MatButtonToggle, MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatRadioButton} from "@angular/material/radio";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatRadioButton,
+    MatButtonToggle,
+    MatButton,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

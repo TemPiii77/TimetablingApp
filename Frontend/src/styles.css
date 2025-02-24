@@ -1,11 +1,25 @@
-input[type=text], input[type=password], input[type="number"] ,select, option {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+/*input[type=text], input[type=password], input[type="number"], select, option {*/
+/*  width: 100%;*/
+/*  padding: 12px 20px;*/
+/*  margin: 8px 0;*/
+/*  display: inline-block;*/
+/*  border: 1px solid #ccc;*/
+/*  box-sizing: border-box;*/
+/*  border-radius: 10px;*/
+/*}*/
+
+.form-container {
+  background-color: ghostwhite;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid lightgray;
+  width: 30%;
+  text-align: center;
   border-radius: 10px;
+}
+
+mat-form-field {
+  width: 550px;
 }
 
 button {
@@ -18,21 +32,27 @@ button {
   width: 100%;
 }
 
+.button-color {
+  background-color: #04AA6D !important;
+  color: white !important;
+  width: 300px;
+}
+
 button:hover {
   opacity: 0.8;
 }
 
 .container {
-  padding: 16px;
+  padding-bottom: 50px;
 }
 
-form {
-  background-color: #fefefe;
-  margin: 1% auto 2% auto;
-  border: 1px solid #888;
-  width: 30%;
-  border-radius: 10px;
-}
+/*form {*/
+/*  background-color: #fefefe;*/
+/*  margin: 1% auto 2% auto;*/
+/*  border: 1px solid #888;*/
+/*  width: 30%;*/
+/*  border-radius: 10px;*/
+/*}*/
 
 
 @media screen and (max-width: 300px) {
@@ -47,15 +67,39 @@ form {
 
 
 table {
-  width: 50%;
-  border-collapse: collapse;
-  font-size: 1em;
-  font-family: 'Arial', sans-serif;
-  text-align: left;
-  margin: 0 auto;
+  /*width: 100%;*/
+  /*border-collapse: collapse;*/
+  /*font-size: 1em;*/
+  /*font-family: 'Arial', sans-serif;*/
+  /*text-align: left;*/
+  /*margin: 30px auto;*/
+
 }
 
-table tr:nth-child(1) {
+.table-container {
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.actions {
+  width: 7% !important;
+}
+
+mat-paginator {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  border-radius: 30px;
+
+}
+
+table mat-row:nth-child(1) {
   background-color: #cccccc;
   color: #333333;
   font-weight: bold;
@@ -70,9 +114,15 @@ table tr:nth-child(even) {
   background-color: #f3f3f3;
 }
 
-table tr:hover {
+table tr:nth-child(even):hover {
   background-color: #f1f1f1;
-  cursor: pointer;
+  color: black;
+}
+
+/* Páratlan sorok hover hatása kék */
+table tr:nth-child(odd):hover {
+  background-color: #f3f3f3;
+  color: black;
 }
 
 @media screen and (max-width: 600px) {
@@ -150,3 +200,6 @@ h1 {
 
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

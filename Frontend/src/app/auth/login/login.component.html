@@ -1,11 +1,21 @@
-<form [formGroup]="loginForm" (ngSubmit)="handleSubmit($event)"  method="post">
-  <div class="container">
-    <label for="username"><b>Azonosító</b></label>
-    <input type="text" formControlName="id" placeholder="Adja meg az egyedi azonosítót" id="username" required minlength="6" maxlength="6">
+<body>
+<!--  <img src="assets/login_image.jpeg" class="login-image" alt="Login image">-->
+  <form [formGroup]="loginForm" (ngSubmit)="handleSubmit($event)"  method="post" class="form-container">
+    <mat-form-field>
+      <mat-label>Azonosító</mat-label>
+      <input type="text" matInput formControlName="id" placeholder="Adja meg az egyedi azonosítót" id="username" required minlength="6" maxlength="6">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Jelszó</mat-label>
+      <input type="password" matInput  formControlName="password" placeholder="Adja meg a jelszót" id="password" required minlength="6" maxlength="40">
+    </mat-form-field>
+    <button mat-raised-button class="button-color">Bejelentkezés</button>
+  </form>
+</body>
 
-    <label for="password"><b>Jelszó</b></label>
-    <input type="password" formControlName="password" placeholder="Adja meg a jelszót" id="password" required>
 
-    <button type="submit">Bejelentkezés</button>
-  </div>
-</form>
+
+
+
+
+
